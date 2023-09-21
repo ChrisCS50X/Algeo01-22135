@@ -1,3 +1,5 @@
+package userinterference;
+
 import java.util.Scanner;
 
 public class InputMatrix {

@@ -1,4 +1,4 @@
-package fuctions;
+package functions;
 
 public class Matrix {
     public static void main(String[] args) throws Exception {

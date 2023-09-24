@@ -15,7 +15,7 @@ public class InputMatrix {
 
         double[][] Matrix = new double[M][N]; 
 
-        System.out.println("Masukkan Elemen Matrix: ");
+        System.out.println("Masukkan Elemen-Elemen Matrix: ");
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 Matrix[i][j] = scan.nextDouble();

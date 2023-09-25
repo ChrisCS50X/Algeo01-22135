@@ -183,4 +183,29 @@ public class Matrix {
     return matrixkofak;
     }
 
+    public static double[][] BikinKiri(double[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        double[][] MatKiri = new double[row][col-1];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col-1; i++) {
+                MatKiri[i][j] = matrix[i][j];
+            }
+        }
+        return MatKiri;
+    }
+
+    public static double[][] BikinKanan(double[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        double[][] MatKanan = new double[row][0];
+
+        for (int i = 0; i < row; i++) {
+            MatKanan[i][0] =matrix[i][col];
+        }
+        return MatKanan;
+
+
+    }
 }

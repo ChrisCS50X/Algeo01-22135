@@ -16,6 +16,18 @@ public class SPL {
                 matrix[pivot][col] /= pivotVal;
             }
             
+            for (int row = 0; row < Row; row++) {
+                // fungsi ini beroperasi pada baris dibawah pivot jadi baris diatas yang sudah ada satu utama tidak diganti
+                if (row > pivot) {
+                    double temp = matrix[row][pivot];
+
+                    for (int col = 0; col < Column; col++) {
+                        //nilai matrix yang dibawah pivot akan dikurangi dengan dirinya sendiri yang membuat nilainya 0
+                        matrix[row][col] -= temp * matrix[pivot][col];
+                    }
+
+                }
+            }
         }
     }
 

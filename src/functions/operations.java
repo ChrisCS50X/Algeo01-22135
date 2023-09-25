@@ -21,12 +21,12 @@ public class operations {
     }
     
     public static double [][] MultiplyMatrix (double[][] matrix1, double[][] matrix2){
-        int row = matrix1.length;
-        int col = matrix2 [0].length;
+        int Row = matrix1.length;
+        int Column = matrix2 [0].length;
         int i,j,k;
-        double [][] m3 = new double [row] [col];
-        for (i = 0 ; i < row ; i++){
-            for (j = 0 ; j < col ; j++){
+        double [][] m3 = new double [Row] [Column];
+        for (i = 0 ; i < Row ; i++){
+            for (j = 0 ; j < Column ; j++){
                 m3[i][j] = 0;
                 for (k = 0 ; k < matrix1[0].length ; k++){
                     m3[i][j] += matrix1[i][k] * matrix2[k][j];

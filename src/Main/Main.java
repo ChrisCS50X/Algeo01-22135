@@ -53,7 +53,6 @@ public class Main {
             case 5:
                 clear();
                 System.out.println("---INTERPOLASI BICUPIC SPLINE---");
-                System.out.println("---INTERPOLASI POLINOM---");
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
@@ -69,7 +68,6 @@ public class Main {
             case 6:
                 clear();
                 System.out.println("---REGRESI LINEAR GANDA---");
-                System.out.println("---INTERPOLASI POLINOM---");
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
@@ -108,7 +106,6 @@ public class Main {
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    outputMatrix.OutString(Mat);
                     SPL.gaussElim(Mat);
                     outputMatrix.OutString(Mat);
                 }
@@ -126,7 +123,6 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    outputMatrix.OutString(Mat);
                     SPL.gaussJordanElim(Mat);
                     outputMatrix.OutString(Mat);
                 }
@@ -137,7 +133,6 @@ public class Main {
             case 3:
                 clear();
                 System.out.println("METODE MATRIKS BALIKAN:");
-                System.out.println("---INTERPOLASI POLINOM---");
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
@@ -145,6 +140,8 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    SPL.matrixBalikan(Mat);
+                    outputMatrix.OutString(Mat);
                 }
                 else {
                     InputMatrix.InputFile();
@@ -153,7 +150,6 @@ public class Main {
             case 4:
                 clear();
                 System.out.println("METODE KAIDAH CRAMER:");
-                System.out.println("---INTERPOLASI POLINOM---");
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");

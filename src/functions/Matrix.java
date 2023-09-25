@@ -189,7 +189,7 @@ public class Matrix {
         double[][] MatKiri = new double[row][col-1];
 
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col-1; i++) {
+            for (int j = 0; j < col-1; j++) {
                 MatKiri[i][j] = matrix[i][j];
             }
         }
@@ -199,10 +199,10 @@ public class Matrix {
     public static double[][] BikinKanan(double[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
-        double[][] MatKanan = new double[row][0];
+        double[][] MatKanan = new double[row][1];
 
         for (int i = 0; i < row; i++) {
-            MatKanan[i][0] =matrix[i][col];
+            MatKanan[i][0] = matrix[i][col-1];
         }
         return MatKanan;
 

@@ -1,5 +1,7 @@
 package functions;
 
+import userinterference.outputMatrix;
+
 public class SPL {
     
     public static double[][] gaussElim(double[][] matrix) {
@@ -67,9 +69,10 @@ public class SPL {
         double matrix2[][] = Matrix.BikinKanan(matrix);
 
         //cek apakah matriks kiri bisa untuk dikalikan dengan matriks kanan
-        if (matrix1.length == matrix2[0].length) {
+        if (matrix1[0].length == matrix2.length) {
             //mencari invers matriks kiri
-            double matrixInvers[][] = SPL.gaussJordanElim(matrix1);
+            double matrixInvers[][] = SPL.gaussJordanElim(matrix1); //salah, harusnya identitasnya yang di gauss-jordan
+            outputMatrix.OutString(matrixInvers);
     
             if (matrixInvers != null) {
                 int Row = matrixInvers.length;

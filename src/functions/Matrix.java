@@ -38,7 +38,7 @@ public class Matrix {
         } 
     }
 
-    public static double[][] copyMatrix(double[][] matrix) {
+    public static double[][] CopyMatrix(double[][] matrix) {
         int nRows = matrix.length;
         int nCols = matrix[0].length;
         
@@ -52,7 +52,7 @@ public class Matrix {
         return copy;
     }
 
-    public static double[][] transposeMatrix(double[][] matrix) {
+    public static double[][] TransposeMatrix(double[][] matrix) {
         int nRows = matrix.length;
         int nCols = matrix[0].length;
         
@@ -113,4 +113,74 @@ public class Matrix {
 
         return determinan/sum;
     }
+
+    public static double[][] GetMinorMatrix(double[][] matrix, int row, int col) {
+        int n = matrix.length;
+        double[][] newMatrix = new double[n-1][n-1];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i < row) {
+                    if (j < col) {
+                        newMatrix[i][j] = matrix[i][j];
+                    } else if (j > col) {
+                        newMatrix[i][j - 1] = matrix[i][j];
+                    }
+                } else if (i > row) {
+                    if (j < col) {
+                        newMatrix[i - 1][j] = matrix[i][j];
+                    } else if (j > col) {
+                        newMatrix[i - 1][j - 1] = matrix[i][j];
+                    }
+                }
+            }
+        }
+
+        return newMatrix;
+    }
+    
+    public static double DeterminanKofaktor (double[][] matrix){
+        
+        int n = matrix.length;
+        double det, detminor;
+        int sign = 1;
+
+        if (n == 1) {
+            det = matrix[0][0];
+        } 
+        
+        else {
+            det = 0;
+            for (int i = 0; i < n; i++) {
+                detminor = DeterminanKofaktor(GetMinorMatrix(matrix, 0, i));
+                det += sign * matrix[0][i] * detminor;
+                sign *= (-1);
+            }
+        }
+
+        return det;
+    }
+
+    public static double [][] MatrixKofaktor (double[][] matrix){
+        int n,i,j,c;
+        n = matrix.length;
+        double [][] matrixkofak = new double[n][n];
+
+        if (n == 1) {
+            matrixkofak[0][0] = matrix[0][0];}
+        
+        else{
+        for (i = 0; i<n; i++){
+            for (j = 0; j < n; j++){
+                c = 1;
+                if ((i + j) % 2 == 1){
+                    c = -1;
+                }
+                matrixkofak[i][j] = c * DeterminanKofaktor(GetMinorMatrix(matrix,i,j));
+            }
+        }
+    }
+    return matrixkofak;
+    }
+
 }

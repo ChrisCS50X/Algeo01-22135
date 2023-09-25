@@ -38,17 +38,49 @@ public class Main {
             case 4:
                 clear();
                 System.out.println("---INTERPOLASI POLINOM---");
-                input();
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                int optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 5:
                 clear();
                 System.out.println("---INTERPOLASI BICUPIC SPLINE---");
-                input();
+                System.out.println("---INTERPOLASI POLINOM---");
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 6:
                 clear();
                 System.out.println("---REGRESI LINEAR GANDA---");
-                input();
+                System.out.println("---INTERPOLASI POLINOM---");
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 7:
                 clear();
@@ -69,41 +101,70 @@ public class Main {
             case 1:
                 clear();
                 System.out.println("METODE ELIMINASI GAUSS:");
-                input();
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                int optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                    outputMatrix.OutString(Mat);
+                    SPL.gaussElim(Mat);
+                    outputMatrix.OutString(Mat);
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 2:
                 clear();
                 System.out.println("METODE ELIMINASI GAUSS-JORDAN:");
-                input();
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                    outputMatrix.OutString(Mat);
+                    SPL.gaussJordanElim(Mat);
+                    outputMatrix.OutString(Mat);
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 3:
                 clear();
                 System.out.println("METODE MATRIKS BALIKAN:");
-                input();
+                System.out.println("---INTERPOLASI POLINOM---");
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
             case 4:
                 clear();
                 System.out.println("METODE KAIDAH CRAMER:");
-                input();
-                break;
-        }
-    }
-
-    public static void input() {
-        System.out.println("MENU");
-        System.out.println("1. Input Keyboard");
-        System.out.println("2. Input File");
-        scan = new Scanner(System.in);
-        int optionInput = scan.nextInt();
-        switch(optionInput) {
-            case 1:
-                double[][] Mat = InputMatrix.InputKeyboard();
-                System.out.println(outputMatrix.OutString(Mat));
-                SPL.gaussElim(Mat);
-                System.out.println(outputMatrix.OutString(Mat));
-                break;
-            case 2:
-                InputMatrix.InputFile();
+                System.out.println("---INTERPOLASI POLINOM---");
+                System.out.println("MENU");
+                System.out.println("1. Input Keyboard");
+                System.out.println("2. Input File");
+                scan = new Scanner(System.in);
+                optionInput = scan.nextInt();
+                if (optionInput == 1) {
+                    double[][] Mat = InputMatrix.InputKeyboard();
+                }
+                else {
+                    InputMatrix.InputFile();
+                }
                 break;
         }
     }

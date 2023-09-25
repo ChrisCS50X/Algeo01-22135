@@ -1,15 +1,17 @@
 package userinterference;
 
+import java.text.DecimalFormat;
+
 public class outputMatrix {
-    public static String OutString(double[][] matrix) {
-        String hasil = "";
+    public static void OutString(double[][] matrix) {
+        DecimalFormat df = new DecimalFormat("#.##");
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j <matrix[0].length; j++) {
-                hasil += matrix[i][j] + " ";
+                matrix[i][j] += 0;
+                System.out.print(df.format(matrix[i][j]));
+                System.out.print(" ");
             }
-            hasil += "\n";
+            System.out.println();
         }
-
-        return hasil;
     }
 }

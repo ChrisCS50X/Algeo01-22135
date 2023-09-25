@@ -67,43 +67,48 @@ public class Matrix {
         return transpose;
     }
 
-    public static double Determinan (double[][]matrix){
-        
-        double[][] GaussCopy = copyMatrix(matrix);
-
-        int i,j,n,x;
-        double temp, determinan, sum;
-        n = GaussCopy.length;
+    public static double DeterminanOBE (double[][]matrix){
+        int i,j,k,n,counter;
+        double nilai1, nilai2, nilai3, temp, determinan, sum;
+        n = matrix.length;
         determinan = 1;
         sum = 1;
 
        
         for (i = 0 ; i < n ; i++){
-            x = i;
+            counter = i;
 
-            while (x < n && GaussCopy[x][i] == 0){
-                x++;
+            while (counter < n && matrix[counter][i] == 0){
+                counter++;
             }
 
-            if (x == n){ 
+            if (counter == n){ 
                 return 0;
             }
 
-            if (x != i){ 
+            if (counter != i){ 
                 for (j = 0 ; j < n ; j++){ // 
-                    temp = GaussCopy[i][j];
-                    GaussCopy[i][j] = GaussCopy[x][j];
-                    GaussCopy[x][j] = temp;
+                    temp = matrix[i][j];
+                    matrix[i][j] = matrix[counter][j];
+                    matrix[counter][j] = temp;
                 }
                 determinan *= -1; 
             }
             
-            // Belom ditaro Operasi Baris Elementer
-            
+            for (j = i + 1 ; j < n ; j++){
+                nilai1 = matrix[i][i];
+                nilai2 = matrix[j][i];
+
+                for (k = 0 ; k < n ; k++){
+                    nilai3 = (nilai1 * matrix[j][k]) - (nilai2 * matrix[i][k]);
+                    matrix[j][k] = nilai3;
+                }
+                sum *= nilai1;
+            }
         }
 
         for (i = 0 ; i < n ; i++){
-            determinan *= GaussCopy[i][i];
+            determinan *= matrix[i][i];
         }
 
         return determinan/sum;

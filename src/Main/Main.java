@@ -2,6 +2,8 @@ package Main;
 
 import userinterference.*;
 import functions.*;
+
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -107,7 +109,15 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussElim(Mat);
-                    outputMatrix.OutString(Mat);
+                    if (operations.cekHasil(Mat) == "Solusi unik") {
+                        System.out.println(operations.solusiUnik(Mat));
+                    }
+                    else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiTidakAda(Mat));
+                    }
+                    else {
+                        System.out.println(operations.solusiBanyak(Mat));
+                    }
                 }
                 else {
                     InputMatrix.InputFile();
@@ -124,7 +134,12 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussJordanElim(Mat);
-                    outputMatrix.OutString(Mat);
+                    if (operations.cekHasil(Mat) == "Solusi unik" || operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiUnik(Mat));
+                    }
+                    else {
+                        System.out.println(operations.solusiBanyak(Mat));
+                    }
                 }
                 else {
                     InputMatrix.InputFile();
@@ -140,7 +155,16 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    outputMatrix.OutString(SPL.matrixBalikan(Mat));
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    String hasil = "nilai x = {";
+                    for (int i = 0; i < Mat.length; i++) {
+                        hasil += df.format(SPL.matrixBalikan(Mat)[i][0]);
+                        if (i < Mat.length-1) {
+                            hasil += ",";
+                        }
+                    }
+                    hasil += "}";
+                    System.out.println(hasil);
                 }
                 else {
                     InputMatrix.InputFile();

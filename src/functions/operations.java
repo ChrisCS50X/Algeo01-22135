@@ -1,5 +1,7 @@
 package functions;
 
+import java.text.DecimalFormat;
+
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
@@ -48,4 +50,65 @@ public class operations {
         }
         return newMat;
       }
+    
+    public static String cekHasil(double[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int cekNol = 0;
+        int banyak = 0;
+        int tidak = 0;
+        String hasil = "";
+
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    cekNol += 1;
+                }
+            }
+            if (cekNol == col+1) {
+                banyak += 1;
+            }
+            else if (cekNol == col) {
+                tidak += 1;
+            }
+            
+        }
+
+        if (banyak != 0) {
+            hasil = "Solusi banyak";
+        }
+        else if (banyak == 0 && tidak != 0) {
+            hasil = "Tidak ada solusi";
+        }
+        else if (banyak == 0 && tidak == 0) {
+            hasil = "Solusi unik";
+        }
+        return hasil;
+    }
+
+    public static String solusiUnik(double[][] matrix) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        String hasil = "nilai x = {";
+        int row = matrix.length;
+        int col = matrix[0].length;
+        SPL.gaussJordanElim(matrix);
+        for (int i = 0; i < row; i++) {
+            hasil += df.format(matrix[i][col-1]);
+            if (i < row-1) {
+                hasil += ",";
+            }
+        }
+        hasil += "}";
+        return hasil;
+    }
+
+    public static String solusiTidakAda(double[][] matrix) {
+        String hasil = "Solusi tidak ada";
+        return hasil;
+    }
+
+    public static String solusiBanyak(double[][] matrix) {
+        String hasil = "Solusi banyak";
+        return hasil;
+    }
 }

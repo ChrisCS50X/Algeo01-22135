@@ -140,8 +140,7 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    SPL.matrixBalikan(Mat);
-                    outputMatrix.OutString(Mat);
+                    outputMatrix.OutString(SPL.matrixBalikan(Mat));
                 }
                 else {
                     InputMatrix.InputFile();

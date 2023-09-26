@@ -10,4 +10,39 @@ public class Inverse {
 
         return MatrixInvers;
     }
+
+    public static double [][] InverseOBE (double[][]matrix){
+        int i,j;
+        int row = matrix.length;
+        int col = matrix [0].length;
+        int coltemp = col * 2;
+
+        double [][] hasil = new double[row][col];
+        double [][] temp = new double [row][coltemp];
+        double [][] MatrixGaussJordaned = new double [row] [coltemp];
+
+        for (i = 0 ; i < row ; i++ ){
+            for (j = 0; j < coltemp ; j++){
+                if (j < col){
+                    temp [i] [j] = matrix[i][j];}
+                else{
+                    if (j - col == i){
+                        temp[i][j] = 1; 
+                    }
+                    else{
+                        temp [i][j] = 0;
+                    }
+                }
+            }
+        }
+
+        MatrixGaussJordaned = SPL.gaussJordanElim(temp);
+
+        for (i = 0; i < row ; i++){
+            for (j = 0; j < col; j ++){
+                hasil[i][j] = MatrixGaussJordaned[i][j + col];
+            }
+        }
+    return hasil;
+    }
 }

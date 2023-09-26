@@ -1,5 +1,6 @@
 package functions;
 
+import functions.*;
 import userinterference.outputMatrix;
 
 public class SPL {
@@ -71,8 +72,7 @@ public class SPL {
         //cek apakah matriks kiri bisa untuk dikalikan dengan matriks kanan
         if (matrix1[0].length == matrix2.length) {
             //mencari invers matriks kiri
-            double matrixInvers[][] = SPL.gaussJordanElim(matrix1); //salah, harusnya identitasnya yang di gauss-jordan
-            outputMatrix.OutString(matrixInvers);
+            double matrixInvers[][] = functions.Inverse.InverseCofactor(matrix1);
     
             if (matrixInvers != null) {
                 int Row = matrixInvers.length;

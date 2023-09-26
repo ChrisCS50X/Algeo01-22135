@@ -1,6 +1,6 @@
 package functions;
 
-public class Operations {
+public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
         int Row, Column, i, j;
@@ -20,11 +20,11 @@ public class Operations {
         return extended;
     }
     
-    public static double [][] MultiplyMatrix (double[][] matrix1, double[][] matrix2){
+    public static double[][] MultiplyMatrix (double[][] matrix1, double[][] matrix2){
         int Row = matrix1.length;
-        int Column = matrix2 [0].length;
+        int Column = matrix2[0].length;
         int i,j,k;
-        double [][] m3 = new double [Row] [Column];
+        double[][] m3 = new double [Row][Column];
         for (i = 0 ; i < Row ; i++){
             for (j = 0 ; j < Column ; j++){
                 m3[i][j] = 0;

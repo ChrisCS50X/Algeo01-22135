@@ -1,6 +1,5 @@
 package functions;
 
-import functions.*;
 import userinterference.outputMatrix;
 
 public class SPL {

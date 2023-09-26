@@ -1,6 +1,6 @@
 package functions;
 
-public class operations {
+public class Operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
         int Row, Column, i, j;
@@ -35,4 +35,17 @@ public class operations {
         }
         return m3;
     } 
+
+    public static double[][] multiplyConst( double[][] matrix, double k) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        double[][] newMat = new double[row][col];
+    
+        for (int i = 0; i < row; i++) {
+          for (int j = 0; j < col; j++) {
+            newMat[i][j] = k * matrix[i][j];
+          }
+        }
+        return newMat;
+      }
 }

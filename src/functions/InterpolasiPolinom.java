@@ -7,12 +7,14 @@ public class InterpolasiPolinom {
     // Menghasilkan a0,a1,a2,an dan dikumpulkan dalam suatu matrix
         int i,j;
         int n = matrix.length;
+        int row = n;
+        int col = n;
 
-        double [][] temp = new double[n][n+1];
+        double [][] temp = new double[row][col+1];
 
-        for (i = 0 ; i < n ; i++){
-            for (j = 0 ; j < n + 1 ; j++){
-                if (j == n){
+        for (i = 0 ; i < row ; i++){
+            for (j = 0 ; j < col + 1 ; j++){
+                if (j == col){
                     temp[i][j] = matrix[i][1];
                 }
                 else{
@@ -23,11 +25,9 @@ public class InterpolasiPolinom {
 
         double [][] newtemp = SPL.gaussJordanElim(temp);
 
-
-        double [] hasil = new double[n];
-
-        for (i = 0; i < n ; i++){
-            hasil[i] = newtemp [i][n];
+        double [] hasil = new double[row];
+        for (i = 0; i < row ; i++){
+            hasil[i] = newtemp [i][col];
         }
 
         return hasil;

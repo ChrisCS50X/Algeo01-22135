@@ -65,12 +65,13 @@ public class operations {
                     cekNol += 1;
                 }
             }
-            if (cekNol == col+1) {
+            if (cekNol == col) {
                 banyak += 1;
             }
-            else if (cekNol == col) {
+            else if (cekNol == col-1) {
                 tidak += 1;
             }
+            cekNol = 0;
             
         }
 

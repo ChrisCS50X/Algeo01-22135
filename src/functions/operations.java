@@ -64,6 +64,10 @@ public class operations {
                 if (matrix[i][j] == 0) {
                     cekNol += 1;
                 }
+                else if (matrix[i][j] != 0 && j < col-1){
+                    cekNol = 0;
+                    continue;
+                }
             }
             if (cekNol == col) {
                 banyak += 1;

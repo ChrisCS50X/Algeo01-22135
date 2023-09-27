@@ -134,8 +134,11 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussJordanElim(Mat);
-                    if (operations.cekHasil(Mat) == "Solusi unik" || operations.cekHasil(Mat) == "Tidak ada solusi") {
+                    if (operations.cekHasil(Mat) == "Solusi unik") {
                         System.out.println(operations.solusiUnik(Mat));
+                    }
+                    else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiTidakAda(Mat));
                     }
                     else {
                         System.out.println(operations.solusiBanyak(Mat));

@@ -15,7 +15,12 @@ public class SPL {
             for (int col = 0; col < Column; col++) {
                 // fungsi ini merupakan sebuah operasi dimana satu baris akan dibagi nilainya dengan nilai yang sudah ada pada pivot Value
                 if(matrix[pivot][col] != 0) {
-                    matrix[pivot][col] /= pivotVal;
+                    if(pivotVal == 0) {
+                        matrix[pivot][col] /= 1;
+                    }
+                    else {
+                       matrix[pivot][col] /= pivotVal; 
+                    }
                 }
                 else {
                     matrix[pivot][col] = 0;
@@ -50,7 +55,12 @@ public class SPL {
             for (int col = 0; col < Column; col++) {
                 // fungsi ini merupakan sebuah operasi dimana satu baris akan dibagi nilainya dengan nilai yang sudah ada pada pivot Value
                 if(matrix[pivot][col] != 0) {
-                    matrix[pivot][col] /= pivotVal;
+                    if(pivotVal == 0) {
+                        matrix[pivot][col] /= 1;
+                    }
+                    else {
+                       matrix[pivot][col] /= pivotVal; 
+                    }
                 }
                 else {
                     matrix[pivot][col] = 0;
@@ -115,5 +125,9 @@ public class SPL {
     // public static double[][] kaidahCramer(double[][] matrix) {
     //     double A[][] = Matrix.BikinKiri(matrix);
     //     double B[][] = Matrix.BikinKanan(matrix);
+    //     double detA[][] = Matrix.DeterminanOBE(matrix);
+    //     Row = matrix.length;
+
+        
     // }
 }

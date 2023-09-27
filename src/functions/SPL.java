@@ -14,7 +14,9 @@ public class SPL {
 
             for (int col = 0; col < Column; col++) {
                 // fungsi ini merupakan sebuah operasi dimana satu baris akan dibagi nilainya dengan nilai yang sudah ada pada pivot Value
-                matrix[pivot][col] /= pivotVal;
+                if(pivotVal != 0) {
+                    matrix[pivot][col] /= pivotVal;
+                }
             }
             
             for (int row = 0; row < Row; row++) {
@@ -24,7 +26,14 @@ public class SPL {
 
                     for (int col = 0; col < Column; col++) {
                         //nilai matrix yang dibawah pivot akan dikurangi dengan dirinya sendiri yang membuat nilainya 0
-                        matrix[row][col] -= temp * matrix[pivot][col];
+                        if(matrix[row][col] != matrix[pivot][col]) {
+                            matrix[row][col] -= temp * matrix[pivot][col];
+                            System.out.println("");
+                        }
+                        else {
+                            matrix[row][col] = 0;
+                            System.out.println("");
+                        }
                     }
 
                 }

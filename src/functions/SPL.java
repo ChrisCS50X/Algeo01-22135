@@ -122,12 +122,39 @@ public class SPL {
         }
     }
     
-    // public static double[][] kaidahCramer(double[][] matrix) {
-    //     double A[][] = Matrix.BikinKiri(matrix);
-    //     double B[][] = Matrix.BikinKanan(matrix);
-    //     double detA[][] = Matrix.DeterminanOBE(matrix);
-    //     Row = matrix.length;
-
+    public static double[][] kaidahCramer(double[][] matrix) {
+        double A[][] = Matrix.BikinKiri(matrix);
+        double B[][] = Matrix.BikinKanan(matrix);
+        double detA = Matrix.DeterminanOBE(matrix);
         
-    // }
+        int Row = matrix.length;
+        int Column = matrix[0].length;
+
+        //inisiasi matriks dengan ukuran yang sama
+        double[][] resultMatrix = new double[Row][1];
+
+        for (int i = 0; i < Row; i++) {
+            // salinan matriks A untuk diganti dengan matriks gabungan A dan B
+            double[][] matrixTemp = new double[Row][Column];
+            for (int j = 0; j < Row; j++) {
+                for (int k = 0; k < Column; k++) {
+                    matrixTemp[j][k] = A[j][k];
+                }
+            }
+        
+            // mengganti kolom matriks A dengan B
+            for (int n = 0; n < Row; n++) {
+                matrixTemp[n][i] = B[n][0];
+            }
+
+            // menghitung determinan matriks gabungan
+            double detMatrixTemp = Matrix.DeterminanOBE(matrixTemp);
+
+            double resultX = detMatrixTemp / detA;
+            // masukan nilai hasil X kedalam matriks
+            resultMatrix[i][0] = resultX;
+        }
+        return resultMatrix;
+        
+    }
 }

@@ -17,6 +17,9 @@ public class SPL {
                 if(pivotVal != 0) {
                     matrix[pivot][col] /= pivotVal;
                 }
+                else {
+                    matrix[pivot][col] = 0;
+                }
             }
             
             for (int row = 0; row < Row; row++) {
@@ -26,14 +29,7 @@ public class SPL {
 
                     for (int col = 0; col < Column; col++) {
                         //nilai matrix yang dibawah pivot akan dikurangi dengan dirinya sendiri yang membuat nilainya 0
-                        if(matrix[row][col] != matrix[pivot][col]) {
-                            matrix[row][col] -= temp * matrix[pivot][col];
-                            System.out.println("");
-                        }
-                        else {
-                            matrix[row][col] = 0;
-                            System.out.println("");
-                        }
+                        matrix[row][col] -= temp * matrix[pivot][col];
                     }
 
                 }
@@ -111,4 +107,8 @@ public class SPL {
         }
     }
     
+    // public static double[][] kaidahCramer(double[][] matrix) {
+    //     double A[][] = Matrix.BikinKiri(matrix);
+    //     double B[][] = Matrix.BikinKanan(matrix);
+    // }
 }

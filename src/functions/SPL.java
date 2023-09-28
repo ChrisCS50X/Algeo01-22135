@@ -1,7 +1,5 @@
 package functions;
 
-import userinterference.outputMatrix;
-
 public class SPL {
     
     public static double[][] gaussElim(double[][] matrix) {
@@ -92,7 +90,6 @@ public class SPL {
         if (matrix1[0].length == matrix2.length) {
             //mencari invers matriks kiri
             double matrixInvers[][] = functions.Inverse.InverseCofactor(matrix1);
-            outputMatrix.OutString(matrixInvers);
     
             if (matrixInvers != null) {
                 int Row = matrixInvers.length;
@@ -113,12 +110,10 @@ public class SPL {
                 return resultMatrix;
             } 
             else {
-                System.out.println("Matriks tidak memiliki matriks balikan.");
                 return null;
             }
         } 
         else {
-            System.out.println("Jumlah kolom matriks kiri harus sama dengan jumlah baris matriks kanan.");
             return null;
         }
     }
@@ -134,27 +129,32 @@ public class SPL {
 
         //inisiasi matriks dengan ukuran yang sama
         double[][] resultMatrix = new double[Row][1];
-
-        for (int i = 0; i < Row; i++) {
-            // salinan matriks A untuk diganti dengan matriks gabungan A dan B
-            double[][] matrixTemp = new double[Row][Column];
-            for (int j = 0; j < Row; j++) {
-                for (int k = 0; k < Column; k++) {
-                    matrixTemp[j][k] = A[j][k];
-                }
-            }
         
-            // mengganti kolom matriks A dengan B
-            for (int n = 0; n < Row; n++) {
-                matrixTemp[n][i] = B[n][0];
+        if (detA != 0) {
+            for (int i = 0; i < Row; i++) {
+                // salinan matriks A untuk diganti dengan matriks gabungan A dan B
+                double[][] matrixTemp = new double[Row][Column];
+                for (int j = 0; j < Row; j++) {
+                    for (int k = 0; k < Column; k++) {
+                        matrixTemp[j][k] = A[j][k];
+                    }
+                }
+            
+                // mengganti kolom matriks A dengan B
+                for (int n = 0; n < Row; n++) {
+                    matrixTemp[n][i] = B[n][0];
+                }
+
+                // menghitung determinan matriks gabungan
+                double detMatrixTemp = Matrix.DeterminanOBE(matrixTemp);
+
+                double resultX = detMatrixTemp / detA;
+                // masukan nilai hasil X kedalam matriks
+                resultMatrix[i][0] = resultX;
             }
-
-            // menghitung determinan matriks gabungan
-            double detMatrixTemp = Matrix.DeterminanOBE(matrixTemp);
-
-            double resultX = detMatrixTemp / detA;
-            // masukan nilai hasil X kedalam matriks
-            resultMatrix[i][0] = resultX;
+        }
+        else {
+            resultMatrix = null;
         }
         return resultMatrix;
         

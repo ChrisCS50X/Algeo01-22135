@@ -183,6 +183,16 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    String hasil = "nilai x = {";
+                    for (int i = 0; i < Mat.length; i++) {
+                        hasil += df.format(SPL.kaidahCramer(Mat)[i][0]);
+                        if (i < Mat.length-1) {
+                            hasil += ",";
+                        }
+                    }
+                    hasil += "}";
+                    System.out.println(hasil);
                 }
                 else {
                     InputMatrix.InputFile();

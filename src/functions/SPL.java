@@ -92,6 +92,7 @@ public class SPL {
         if (matrix1[0].length == matrix2.length) {
             //mencari invers matriks kiri
             double matrixInvers[][] = functions.Inverse.InverseCofactor(matrix1);
+            outputMatrix.OutString(matrixInvers);
     
             if (matrixInvers != null) {
                 int Row = matrixInvers.length;
@@ -125,10 +126,11 @@ public class SPL {
     public static double[][] kaidahCramer(double[][] matrix) {
         double A[][] = Matrix.BikinKiri(matrix);
         double B[][] = Matrix.BikinKanan(matrix);
-        double detA = Matrix.DeterminanOBE(matrix);
+        double A1[][] = Matrix.CopyMatrix(A);
+        double detA = Matrix.DeterminanOBE(A1);
         
-        int Row = matrix.length;
-        int Column = matrix[0].length;
+        int Row = A.length;
+        int Column = A[0].length;
 
         //inisiasi matriks dengan ukuran yang sama
         double[][] resultMatrix = new double[Row][1];

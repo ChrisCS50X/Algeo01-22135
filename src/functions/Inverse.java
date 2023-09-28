@@ -22,8 +22,9 @@ public class Inverse {
         int i,j;
         int row = matrix.length;
         int col = matrix [0].length;
-        int coltemp = col * 2;
-        
+        double [][] temp = new double [row][col * 2];
+        double [][] hasil = new double[row][col];
+       
         double det = Matrix.DeterminanOBE(matrix);
 
         if (det == 0){
@@ -31,16 +32,12 @@ public class Inverse {
         }
 
         else{
-        double [][] hasil = new double[row][col];
-        double [][] temp = new double [row][coltemp];
-        double [][] MatrixGaussJordaned = new double [row] [coltemp];
-
-        for (i = 0 ; i < row ; i++ ){
-            for (j = 0; j < coltemp ; j++){
+        for (i = 0 ; i < temp.length ; i++ ){
+            for (j = 0; j < temp[0].length; j++){
                 if (j < col){
-                    temp [i] [j] = matrix[i][j];}
+                    temp [i][j] = matrix[i][j];}
                 else{
-                    if (j - col == i){
+                    if ((j - col == i)) {
                         temp[i][j] = 1; 
                     }
                     else{
@@ -50,11 +47,11 @@ public class Inverse {
             }
         }
 
-        MatrixGaussJordaned = SPL.gaussJordanElim(temp);
+        temp = SPL.gaussJordanElim(temp);
 
-        for (i = 0; i < row ; i++){
-            for (j = 0; j < col; j ++){
-                hasil[i][j] = MatrixGaussJordaned[i][j + col];
+        for (i = 0; i < hasil.length ; i++){
+            for (j = 0; j < hasil[0].length; j ++){
+                hasil[i][j] = temp[i][j + col];
             }
         }
         return hasil;

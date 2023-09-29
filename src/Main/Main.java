@@ -159,7 +159,8 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     DecimalFormat df = new DecimalFormat("#.##");
-                    if (SPL.matrixBalikan(Mat) != null) {
+                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    if (Matrix.DeterminanOBE(Mat1) != 0) {
                         String hasil = "nilai x = {";
                         int row = SPL.matrixBalikan(Mat).length;
                         int col = SPL.matrixBalikan(Mat)[0].length;
@@ -288,7 +289,8 @@ public class Main {
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    if (Inverse.InverseOBE(Mat) != null) {
+                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    if (Matrix.DeterminanOBE(Mat1) != 0) {
                         outputMatrix.OutString(Inverse.InverseOBE(Mat));
                     }
                     else {
@@ -309,7 +311,8 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    if (Inverse.InverseOBE(Mat) != null) {
+                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    if (Matrix.DeterminanKofaktor(Mat1) != 0) {
                         outputMatrix.OutString(Inverse.InverseCofactor(Mat));
                     }
                     else {

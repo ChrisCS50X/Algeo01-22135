@@ -81,6 +81,7 @@ public class InterpolasiPolinom {
     
 
     //Buat Debugging
+    /*
     public static void Printmatrix(double[] M){
         //Mengeluarkan output matrix
             for (int i = 0; i < M.length;i++){
@@ -91,6 +92,7 @@ public class InterpolasiPolinom {
 
 
 
+     
     public static void main(String[] args) {
         // Create a test matrix
         double[][] testMatrix = {
@@ -104,5 +106,6 @@ public class InterpolasiPolinom {
         // Print the result
         Printmatrix(interpolasi);
         OutputInterpolasi(interpolasi);
-    } 
+        System.out.print(estimasi(interpolasi, 9.2)); 
+    } */
 }

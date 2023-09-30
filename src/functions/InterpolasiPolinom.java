@@ -44,4 +44,38 @@ public class InterpolasiPolinom {
         }
         return hasil;
     }
+
+    public static void OutputInterpolasi(double[] matrix){
+        System.out.println("Hasil dari interpolasi adalah: ");
+        int len = matrix.length;
+        String output = "";
+
+        output += matrix[0];
+
+        for (int i = 0; i<len;i++){
+            boolean IsNeg = false;
+
+            if (matrix[i] < 0){
+                output += " - ";
+                matrix[i] *= -1;
+                IsNeg = true;
+            }
+
+            else{
+                output += " + ";
+            }
+
+            if (i == 1){
+                output += matrix[i] + "x";
+            }
+            else {
+                output += ("x^" + i);
+            }
+
+            if (IsNeg == true){
+                matrix[i] *= -1;
+            }
+        }
+        System.out.println(output);
+    }
 }

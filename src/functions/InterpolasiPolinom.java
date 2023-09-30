@@ -52,7 +52,7 @@ public class InterpolasiPolinom {
 
         output += matrix[0];
 
-        for (int i = 0; i<len;i++){
+        for (int i = 1; i<len;i++){
             boolean IsNeg = false;
 
             if (matrix[i] < 0){
@@ -61,15 +61,15 @@ public class InterpolasiPolinom {
                 IsNeg = true;
             }
 
-            else{
+            else {
                 output += " + ";
             }
-
+            
             if (i == 1){
                 output += matrix[i] + "x";
             }
-            else {
-                output += ("x^" + i);
+            else if (i > 1){
+                output += (matrix[i] + "x^" + i);
             }
 
             if (IsNeg == true){
@@ -78,4 +78,31 @@ public class InterpolasiPolinom {
         }
         System.out.println(output);
     }
+    
+
+    //Buat Debugging
+    public static void Printmatrix(double[] M){
+        //Mengeluarkan output matrix
+            for (int i = 0; i < M.length;i++){
+                    System.out.print(M[i] + " ");
+                }
+                System.out.println();
+            }
+
+
+
+    public static void main(String[] args) {
+        // Create a test matrix
+        double[][] testMatrix = {
+            {8,2.0794},
+            {9.0, 2.1972},{9.5, 2.2513}
+        };
+
+        // Calculate the determinant using your function
+        double [] interpolasi = Interpolate(testMatrix);
+
+        // Print the result
+        Printmatrix(interpolasi);
+        OutputInterpolasi(interpolasi);
+    } 
 }

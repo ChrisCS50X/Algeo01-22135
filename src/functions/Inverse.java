@@ -2,7 +2,8 @@ package functions;
 
 public class Inverse {
     public static double [][] InverseCofactor (double[][]matrix){
-        //Mengembalikan matriks inverse menggunakan metode ekspansi kofaktor
+        //Menghasilkan matriks inverse menggunakan metode ekspansi kofaktor
+
         double det = Matrix.DeterminanKofaktor(matrix);
         double [][] tempkofak = Matrix.MatrixKofaktor(matrix);
         double [][] adjoin = Matrix.TransposeMatrix(tempkofak);
@@ -12,6 +13,8 @@ public class Inverse {
     }
 
     public static double [][] InverseOBE (double[][]matrix){
+      //Menghasilkan matriks inverse menggunakan metode eliminasi gauss jordan
+    
       int i,j;
       int row = matrix.length;
       int col = matrix [0].length;

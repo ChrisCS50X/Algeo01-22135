@@ -6,6 +6,7 @@ public class Matrix {
 
     public static void OutputMatrix(double[][] M){
     //Mengeluarkan output matrix
+
         for (int i = 0; i < M.length;i++){
             for (int j = 0; j< M[i].length;j++){
                 System.out.print(M[i][j] + " ");
@@ -16,6 +17,7 @@ public class Matrix {
 
     public static double[][] CreateIdentityMatrix(double[][] matrix, int n) {
         // Membuat Matrix identitas
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i == j) {
@@ -30,6 +32,7 @@ public class Matrix {
 
     public static boolean IsSquare(double[][] matrix) {
         //Cek apakah suatu matrix merupakan matrix persegi
+
         int nRows = matrix.length;
         int nCols = matrix[0].length;
     
@@ -43,6 +46,7 @@ public class Matrix {
 
     public static double[][] CopyMatrix(double[][] matrix) {
         //Mengcopy keseluruhan matrix
+
         int nRows = matrix.length;
         int nCols = matrix[0].length;
         
@@ -58,6 +62,7 @@ public class Matrix {
 
     public static double[][] TransposeMatrix(double[][] matrix) {
         //Men-transpose kan suatu matrix dan mengembalikan matrix transposenya
+
         int nRows = matrix.length;
         int nCols = matrix[0].length;
         
@@ -74,6 +79,7 @@ public class Matrix {
 
     public static double DeterminanOBE (double[][]matrix){
         //Mencari determinan menggunakan OBE
+
         int i,j,k,n,counter;
         double nilai1, nilai2, nilai3, temp, determinan, sum;
         n = matrix.length;
@@ -122,6 +128,7 @@ public class Matrix {
 
     public static double[][] GetMinorMatrix(double[][] matrix, int row, int col) {
         //Mengembalikan matriks minor dari kolom dan baris yang diinput
+
         int n = matrix.length;
         double[][] newMatrix = new double[n-1][n-1];
 
@@ -148,6 +155,7 @@ public class Matrix {
     
     public static double DeterminanKofaktor (double[][] matrix){
         // Mencari Determinan menggunakan ekspansi kofaktor
+
         int n = matrix.length;
         double det, detminor;
         int sign = 1;
@@ -170,6 +178,7 @@ public class Matrix {
 
     public static double [][] MatrixKofaktor (double[][] matrix){
         //Matriks yang semua elemennya merupakan kofaktor dari suatu matrix
+        
         int n,i,j,c;
         n = matrix.length;
         double [][] matrixkofak = new double[n][n];

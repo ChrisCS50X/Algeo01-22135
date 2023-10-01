@@ -1,6 +1,5 @@
 package functions;
 
-
 public class InterpolasiBikubik {
     public static double bicubicGetValue(double[][] p, double x, double y) {
         // Membuat array untuk menyimpan hasil interpolasi kubik dari setiap baris

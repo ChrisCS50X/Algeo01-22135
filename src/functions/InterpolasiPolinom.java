@@ -4,7 +4,8 @@ import java.lang.Math;
 public class InterpolasiPolinom {
 
     public static double[] Interpolate (double[][]matrix){
-    // Menghasilkan a0,a1,a2,an dan dikumpulkan dalam suatu matrix
+    // Menghasilkan a0,a1,a2,...an dan dikumpulkan dalam suatu matrix
+
         int i,j;
         int n = matrix.length;
         int row = n;
@@ -34,7 +35,10 @@ public class InterpolasiPolinom {
     }
 
     public static double estimasi (double[]matrix, double x){
-    //Menghitung estimasi nilai fungsi pada x
+    /* Menghitung estimasi nilai fungsi pada x. Nilai estimasi didapatkan dengan meng-input
+        x pada persamaan interpolasi yang sudah didapatkan.
+    */
+
         int n,i;
         double hasil = 0;
         n = matrix.length;
@@ -46,6 +50,8 @@ public class InterpolasiPolinom {
     }
 
     public static void OutputInterpolasi(double[] matrix){
+        /* Mengeluarkan output berupa persamaan interpolasi*/
+
         System.out.println("Hasil dari interpolasi adalah: ");
         int len = matrix.length;
         String output = "";

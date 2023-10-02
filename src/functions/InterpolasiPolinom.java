@@ -49,7 +49,7 @@ public class InterpolasiPolinom {
         return hasil;
     }
 
-    public static void OutputInterpolasi(double[] matrix){
+    public static String OutputInterpolasi(double[] matrix){
         /* Mengeluarkan output berupa persamaan interpolasi*/
 
         System.out.println("Hasil dari interpolasi adalah: ");
@@ -82,7 +82,7 @@ public class InterpolasiPolinom {
                 matrix[i] *= -1;
             }
         }
-        System.out.println(output);
+        return output;
     }
     
 

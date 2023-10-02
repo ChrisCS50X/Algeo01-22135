@@ -56,39 +56,17 @@ public class operations {
     public static String cekHasil(double[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
-        int cekNol = 0;
-        int banyak = 0;
-        int tidak = 0;
-        String hasil = "";
+        String hasil = "Solusi unik";
 
-        for (int i = 0; i < row; i++){
-            for (int j = 0; j < col; j++) {
-                if (matrix[i][j] == 0) {
-                    cekNol += 1;
+        for (int i = 0; i < row; i++) {
+            if (matrix[i][i] == 0) {
+                if (matrix[i][col-1] == 0) {
+                    hasil = "Solusi banyak";
                 }
-                else if (matrix[i][j] != 0 && j < col-1){
-                    cekNol = 0;
-                    continue;
+                else {
+                    hasil = "Tidak ada solusi";
                 }
             }
-            if (cekNol == col) {
-                banyak += 1;
-            }
-            else if (cekNol == col-1) {
-                tidak += 1;
-            }
-            cekNol = 0;
-            
-        }
-
-        if (banyak != 0) {
-            hasil = "Solusi banyak";
-        }
-        else if (banyak == 0 && tidak != 0) {
-            hasil = "Tidak ada solusi";
-        }
-        else if (banyak == 0 && tidak == 0) {
-            hasil = "Solusi unik";
         }
         return hasil;
     }
@@ -148,5 +126,17 @@ public class operations {
             jawaban += "X" + "[" + i + "]" + " = " + hasil[i-1] + " ";
         }
         return jawaban;
+    }
+
+    public static Double[][] UpdateHasil(Double[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                matrix[i][j] += 0;
+            }
+        }
+        return matrix;
     }
 }

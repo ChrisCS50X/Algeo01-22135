@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         while(true) {
             clear();
-            System.out.println("MENU");
+            System.out.println("MAIN MENU");
             System.out.println("1. Sistem Persamaan Linier");
             System.out.println("2. Determinan");
             System.out.println("3. Matriks balikan");
@@ -24,18 +24,12 @@ public class Main {
             int option = scan.nextInt();
             switch (option) {
                 case 1:
-                    clear();
-                    System.out.println("---SISTEM PERSAMAAN LINIER---");
                     SubmenuSPL();
                     break;
                 case 2:
-                    clear();
-                    System.out.println("---DETERMINAN---");
                     SubmenuDet();
                     break;
                 case 3:
-                    clear();
-                    System.out.println("---MATRIKS BALIKAN---");
                     SubmenuInverse();
                     break;
                 case 4:
@@ -44,29 +38,51 @@ public class Main {
                     System.out.println("MENU");
                     System.out.println("1. Input Keyboard");
                     System.out.println("2. Input File");
+                    System.out.println("3. Kembali");
+                    System.out.print("Masukkan Pilihan Anda: ");
                     scan = new Scanner(System.in);
                     int optionInput = scan.nextInt();
                     if (optionInput == 1) {
-                        double[][] Mat = InputMatrix.InputKeyboard();
+                        double[][] Mat = InputMatrix.InputInterpolasi();
+                        System.out.print("Masukkan Nilai Taksiran: ");
+                        Float X = scan.nextFloat();
+                        double[] interpolasi = InterpolasiPolinom.Interpolate(Mat);
+                        System.out.print(InterpolasiPolinom.OutputInterpolasi(interpolasi));
+                        System.out.println(", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
                     }
-                    else {
+                    else if (optionInput == 2) {
                         InputMatrix.InputFile();
                     }
+                    else {
+                        main(args);
+                    }
+                    Exit();
                     break;
                 case 5:
                     clear();
-                    System.out.println("---INTERPOLASI BICUPIC SPLINE---");
+                    System.out.println("---INTERPOLASI BICUBIC SPLINE---");
                     System.out.println("MENU");
                     System.out.println("1. Input Keyboard");
                     System.out.println("2. Input File");
+                    System.out.println("3. Kembali");
+                    System.out.print("Masukkan Pilihan Anda: ");
                     scan = new Scanner(System.in);
                     optionInput = scan.nextInt();
                     if (optionInput == 1) {
                         double[][] Mat = InputMatrix.InputKeyboard();
+                        System.out.print("Masukkan nilai a: ");
+                        Float a = scan.nextFloat();
+                        System.out.print("Masukkan nilai b: ");
+                        Float b = scan.nextFloat();
+                        System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(Mat, a, b));
                     }
-                    else {
+                    else if (optionInput == 2) {
                         InputMatrix.InputFile();
                     }
+                    else {
+                        main(args);
+                    }
+                    Exit();
                     break;
                 case 6:
                     clear();
@@ -74,14 +90,40 @@ public class Main {
                     System.out.println("MENU");
                     System.out.println("1. Input Keyboard");
                     System.out.println("2. Input File");
+                    System.out.println("3. Kembali");
+                    System.out.print("Masukkan Pilihan Anda: ");
                     scan = new Scanner(System.in);
                     optionInput = scan.nextInt();
                     if (optionInput == 1) {
-                        double[][] Mat = InputMatrix.InputKeyboard();
+                        double[][] Mat = InputMatrix.InputRegresi();
+                        double[] Taksiran = new double[Mat[0].length - 1];
+                        System.out.println("Masukkan Matriks Taksiran: ");
+                        for (int i = 0; i < Mat[0].length - 1; i++) {
+                            Taksiran[i] = scan.nextDouble();
+                        }
+
+                        double[][] MatX = Matrix.BikinKiri(Mat);
+                        double[][] MatY = Matrix.BikinKanan(Mat);
+                        double[] Regresi = RegresiLinier.Regresiganda(MatX, MatY);
+                        System.out.print(RegresiLinier.OutputRegresi(Regresi));
+                        System.out.print(", f(");
+                        for (int i = 0; i < Taksiran.length; i++) {
+                            if (i < Taksiran.length - 1) {
+                                System.out.print(Taksiran[i] + ",");
+                            }
+                            else {
+                                System.out.println(Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
+                            }
+                        }
+
                     }
-                    else {
+                    else if (optionInput == 2) {
                         InputMatrix.InputFile();
                     }
+                    else {
+                        main(args);
+                    }
+                    Exit();
                     break;
                 case 7:
                     clear();
@@ -97,11 +139,14 @@ public class Main {
     }
 
     public static void SubmenuSPL() {
+        clear();
+        System.out.println("---SISTEM PERSAMAAN LINIER---");
         System.out.println("MENU");
         System.out.println("1. Metode eliminasi Gauss");
         System.out.println("2. Metode eliminasi Gauss-Jordan");
         System.out.println("3. Metode matriks balikan");
         System.out.println("4. Kaidah Cramer");
+        System.out.println("5. Kembali");
         scan = new Scanner(System.in);
         System.out.print("Masukkan Pilihan Anda: ");
         int optionSub = scan.nextInt();
@@ -112,6 +157,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
@@ -128,8 +174,11 @@ public class Main {
                         System.out.println(operations.solusiBanyak(Mat));
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
+                }
+                else {
+                    SubmenuSPL();
                 }
                 Exit();
                 break;
@@ -139,6 +188,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
@@ -155,8 +205,11 @@ public class Main {
                         System.out.println(operations.solusiBanyak(Mat));
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
+                }
+                else {
+                    SubmenuSPL();
                 }
                 Exit();
                 break;
@@ -166,6 +219,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
@@ -195,8 +249,11 @@ public class Main {
                         }
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
+                }
+                else {
+                    SubmenuSPL();
                 }
                 Exit();
                 break;
@@ -206,6 +263,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
@@ -232,18 +290,27 @@ public class Main {
                         }
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
                 }
+                else {
+                    SubmenuSPL();
+                }
                 Exit();
+                break;
+            case 5:
+                main(null);
                 break;
         }
     }
 
     public static void SubmenuDet() {
+        clear();
+        System.out.println("---DETERMINAN---");
         System.out.println("MENU");
         System.out.println("1. Metode reduksi baris");
         System.out.println("2. Metode ekspansi kofaktor");
+        System.out.println("3. Kembali");
         System.out.print("Masukkan Pilihan Anda: ");
         scan = new Scanner(System.in);
         int optionSub = scan.nextInt();
@@ -254,6 +321,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
@@ -264,9 +332,13 @@ public class Main {
                     System.out.print("Determinan = ");
                     System.out.println(df.format(hasil));
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
                 }
+                else {
+                    SubmenuDet();
+                }
+                Exit();
                 break;
             case 2:
                 clear();
@@ -274,6 +346,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
@@ -284,17 +357,27 @@ public class Main {
                     System.out.print("Determinan = ");
                     System.out.println(df.format(hasil));
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
                 }
+                else {
+                    SubmenuDet();
+                }
+                Exit();
+                break;
+            case 3:
+                main(null);
                 break;
         }
     }
 
     public static void SubmenuInverse() {
+        clear();
+        System.out.println("---MATRIKS BALIKAN---");
         System.out.println("MENU");
         System.out.println("1. Metode matriks balikan");
         System.out.println("2. Metode adjoin");
+        System.out.println("3. Kembali");
         System.out.print("Masukkan Pilihan Anda: ");
         scan = new Scanner(System.in);
         int optionSub = scan.nextInt();
@@ -305,6 +388,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
@@ -318,9 +402,13 @@ public class Main {
                         System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
                 }
+                else {
+                    SubmenuInverse();
+                }
+                Exit();
                 break;
             case 2:
                 clear();
@@ -328,6 +416,7 @@ public class Main {
                 System.out.println("MENU");
                 System.out.println("1. Input Keyboard");
                 System.out.println("2. Input File");
+                System.out.println("3. Kembali");
                 System.out.print("Masukkan Pilihan Anda: ");
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
@@ -341,9 +430,16 @@ public class Main {
                         System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
-                else {
+                else if (optionInput == 2) {
                     InputMatrix.InputFile();
                 }
+                else {
+                    SubmenuInverse();
+                }
+                Exit();
+                break;
+            case 3:
+                main(null);
                 break;
         }
     }
@@ -355,7 +451,7 @@ public class Main {
 
 
     public static void Exit() {
-        System.out.print("Press any key to exit");
+        System.out.print("Press enter to exit");
         scan = new Scanner(System.in);
         scan.nextLine();
     }

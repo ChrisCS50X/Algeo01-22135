@@ -24,6 +24,41 @@ public class InputMatrix {
         return Matrix;   
     }
 
+    public static double[][] InputInterpolasi() {
+        scan = new Scanner(System.in);
+        System.out.print("Masukkan Banyaknya Titik: ");
+        int N = scan.nextInt();
+        System.out.println("Masukkan Matriks Titik-Titik: ");
+
+        double[][] Matrix = new double[N][2];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < 2; j++) {
+                Matrix[i][j] = scan.nextDouble();
+            }
+        }
+
+        return Matrix;
+    }
+
+    public static double[][] InputRegresi() {
+        scan = new Scanner(System.in);
+        System.out.print("Masukkan jumlah peubah x: ");
+        int N = scan.nextInt();
+        System.out.print("Masukkan jumlah sampel: ");
+        int M = scan.nextInt();
+        System.out.println("Masukkan Matriks sampel: ");
+
+        double[][] Matrix = new double[M][N+1];
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N+1; j++) {
+                Matrix[i][j] = scan.nextDouble();
+            }
+        }
+        return Matrix;
+    }
+
     public static double[][] InputFile() {
         scan = new Scanner(System.in);
         System.out.print("Masukkan Nama File: ");

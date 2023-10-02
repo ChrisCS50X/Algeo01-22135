@@ -1,7 +1,8 @@
 package functions;
 
 public class InterpolasiBikubik {
-    public static double bicubicGetValue(double[][] p, double x, double y) {
+    //
+    public static double bicubic(double[][] p, double x, double y) {
         // Membuat array untuk menyimpan hasil interpolasi kubik dari setiap baris
         double[] arr = new double[4];
 
@@ -13,10 +14,5 @@ public class InterpolasiBikubik {
         // Rumus interpolasi bicubik yang menggabungkan hasil interpolasi kubik pada koordinat y
         return arr[1] + 0.5 * y * (arr[2] - arr[0] + y * (2.0 * arr[0] - 5.0 * arr[1] + 4.0 * arr[2] - arr[3] + y * (3.0 * (arr[1] - arr[2]) + arr[3] - arr[0])));
         // kenapa array ke-1 dikarenakan hasil interpolasi kubik setiap baris diambil dari arr[1]
-    }
-
-    // function ini sebenarnya tidak berpengaruh namun hanya untuk mempersingkat nama saat dimasukan ke main
-    public static double bicubic(double[][] p, double x, double y) {
-        return bicubicGetValue(p, x, y);    
     }
 }

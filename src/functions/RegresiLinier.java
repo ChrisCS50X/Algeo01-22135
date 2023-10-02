@@ -1,6 +1,6 @@
 package functions;
 public class RegresiLinier {
-    public static double[] Regresiganda (double[][] matrix, double [] hasily){
+    public static double[] Regresiganda (double[][] matrix, double [][] hasily){
         /*  Menghasilkan nilai dari b0,b1,b2,...bn dengan memanfaatkan Normal Estimation 
         Equation for Multiple Linear Regression */
         
@@ -22,7 +22,7 @@ public class RegresiLinier {
         }
 
         for (int i = 0; i < row ; i++){
-            matrixtemp[i][col + 1] = hasily[i];
+            matrixtemp[i][col + 1] = hasily[i][0];
         }
 
         double[][] newtemp = new double[col + 1][col + 2];
@@ -62,7 +62,7 @@ public class RegresiLinier {
         return result;
     }
 
-    public static void OutputRegresi(double[] matrix){
+    public static String OutputRegresi(double[] matrix){
         // Mengeluarkan output berupa persamaan regresi berganda
 
         System.out.println("Hasil dari regresi berganda adalah: ");
@@ -90,7 +90,7 @@ public class RegresiLinier {
                 matrix[i] *= -1;
             }
         }
-        System.out.println(output);
+        return output;
     }
 
 

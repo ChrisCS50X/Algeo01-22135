@@ -2,6 +2,8 @@ package functions;
 
 import java.text.DecimalFormat;
 
+import userinterference.outputMatrix;
+
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
@@ -113,7 +115,38 @@ public class operations {
     }
 
     public static String solusiBanyak(double[][] matrix) {
-        String hasil = "Solusi banyak";
-        return hasil;
+        DecimalFormat df = new DecimalFormat("#.##");
+        String Parameter[] = {"r", "s", "t", "u", "v", "w", "x", "y", "z"};
+        String hasil[] = new String[matrix.length];
+        String jawaban = "";
+
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int cekNol = 0;
+        int k = col-1;
+        for (int i = row-1; i >= 0; i--) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    cekNol += 1;
+                }
+            }
+            if (cekNol == col) {
+                hasil[i] = Parameter[row - i];
+            }
+            else {
+                if (i == row -1) {
+                    hasil[i] = (df.format(matrix[i][k])) + "-" + hasil[i+1]; //minusnya ga masuk kedalem. harus tau cara ngalinya gmn
+                }
+                else {
+                    hasil[i] = (df.format(matrix[i][k])) + "-" + hasil[i+1];
+                }
+                //enak kalo rekursif cmn belom kepikiran
+            }
+        }
+
+        for (int i = 1; i <= hasil.length; i++){
+            jawaban += "X" + "[" + i + "]" + " = " + hasil[i-1] + " ";
+        }
+        return jawaban;
     }
 }

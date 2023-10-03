@@ -3,6 +3,8 @@ package userinterference;
 import java.io.File;
 import java.util.Scanner;
 
+import functions.Matrix;
+
 public class InputMatrix {
     public static Scanner scan;
     public static double[][] InputKeyboard() {
@@ -73,31 +75,162 @@ public class InputMatrix {
             int Row = 0;
             int Col = 0;
             while (FileScan.hasNextLine()) {
+                String arr = FileScan.nextLine();
+                String[] arrhasil = arr.split(" ");
+                Col = arrhasil.length;
                 Row++;
-                Scanner colReader = new Scanner(FileScan.nextLine());
-                while (colReader.hasNextLine()) {
-                    Col++;
-                }
             }
             double[][] Matrix = new double[Row][Col];
             FileScan.close();
 
+            String hasil = "";
             FileScan = new Scanner(file);
             for (int i = 0; i < Row; i++) {
-                for (int j = 0; j < 0; j++) {
-                    if(FileScan.hasNextDouble()) {
-                        Matrix[i][j] = FileScan.nextDouble();
+                hasil = FileScan.nextLine();
+                String[] arrhasil = hasil.split(" ");
+                for (int j = 0; j < Col; j++) {
+                    Matrix[i][j] = Double.parseDouble(arrhasil[j]);
+                }
+            }
+            FileScan.close();
+            return Matrix;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static double[][] InputFileReg() {
+        scan = new Scanner(System.in);
+        System.out.print("Masukkan Nama File: ");
+        String NamaFile = scan.nextLine();
+
+        String path = "..\\test\\" + NamaFile;
+        
+        try {
+            File file = new File(path);
+            Scanner FileScan = new Scanner(file);
+            // Baca baris dan kolom matrix dalam file
+            int Row = 0;
+            int Col = 0;
+            while (FileScan.hasNextLine()) {
+                String arr = FileScan.nextLine();
+                String[] arrhasil = arr.split(" ");
+                Col = arrhasil.length;
+                Row++;
+            }
+            double[][] Matrix = new double[Row][Col+1];
+            FileScan.close();
+
+            String hasil = "";
+            FileScan = new Scanner(file);
+            for (int i = 0; i < Row; i++) {
+                hasil = FileScan.nextLine();
+                String[] arrhasil = hasil.split(" ");
+                for (int j = 0; j < Col; j++) {
+                    if (i == Row-1 && j == Col) {
+                        Matrix[i][j] = 0;
+                    }
+                    else {
+                        Matrix[i][j] = Double.parseDouble(arrhasil[j]);
                     }
                 }
             }
             FileScan.close();
+            return Matrix;
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-            double[][] Matrix = new double[1][1];
+            return null;
+        }
+    }
+
+    public static double[][] InputFileInterpl() {
+        scan = new Scanner(System.in);
+        System.out.print("Masukkan Nama File: ");
+        String NamaFile = scan.nextLine();
+
+        String path = "..\\test\\" + NamaFile;
+        
+        try {
+            File file = new File(path);
+            Scanner FileScan = new Scanner(file);
+            // Baca baris dan kolom matrix dalam file
+            int Row = 0;
+            int Col = 0;
+            while (FileScan.hasNextLine()) {
+                String arr = FileScan.nextLine();
+                String[] arrhasil = arr.split(" ");
+                Col = arrhasil.length;
+                Row++;
+            }
+            double[][] Matrix = new double[Row][Col+1];
+            FileScan.close();
+
+            String hasil = "";
+            FileScan = new Scanner(file);
+            for (int i = 0; i < Row; i++) {
+                hasil = FileScan.nextLine();
+                String[] arrhasil = hasil.split(" ");
+                for (int j = 0; j < 2; j++) {
+                    if (i == Row-1 && j == Col) {
+                        Matrix[i][j] = 0;
+                    }
+                    else {
+                        Matrix[i][j] = Double.parseDouble(arrhasil[j]);
+                    }
+                }
+            }
+            FileScan.close();
             return Matrix;
         }
-        return null;
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static double[][] InputFileInterBc() {
+        scan = new Scanner(System.in);
+        System.out.print("Masukkan Nama File: ");
+        String NamaFile = scan.nextLine();
+
+        String path = "..\\test\\" + NamaFile;
+        
+        try {
+            File file = new File(path);
+            Scanner FileScan = new Scanner(file);
+            // Baca baris dan kolom matrix dalam file
+            int Row = 0;
+            while (FileScan.hasNextLine()) {
+                Row++;
+            }
+            int Col = 4;
+            double[][] Matrix = new double[Row][Col];
+            FileScan.close();
+
+            String hasil = "";
+            FileScan = new Scanner(file);
+            for (int i = 0; i < Row; i++) {
+                hasil = FileScan.nextLine();
+                String[] arrhasil = hasil.split(" ");
+                for (int j = 0; j < 2; j++) {
+                    if (i == Row-1 && j > 1) {
+                        Matrix[i][j] = 0;
+                    }
+                    else {
+                        Matrix[i][j] = Double.parseDouble(arrhasil[j]);
+                    }
+                }
+            }
+            FileScan.close();
+            return Matrix;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
 

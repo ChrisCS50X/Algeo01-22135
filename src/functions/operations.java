@@ -2,8 +2,6 @@ package functions;
 
 import java.text.DecimalFormat;
 
-import userinterference.outputMatrix;
-
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
@@ -116,7 +114,7 @@ public class operations {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                hasil += df.format(matrix[i][j] + " ");
+                hasil += df.format(matrix[i][j]) + " ";
             }
             hasil += "\n";
         }

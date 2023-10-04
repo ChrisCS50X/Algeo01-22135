@@ -52,9 +52,8 @@ public class InterpolasiPolinom {
     public static String OutputInterpolasi(double[] matrix){
         /* Mengeluarkan output berupa persamaan interpolasi*/
 
-        System.out.println("Hasil dari interpolasi adalah: ");
+        String output = "Hasil dari interpolasi adalah: \n";
         int len = matrix.length;
-        String output = "";
 
         output += matrix[0];
 

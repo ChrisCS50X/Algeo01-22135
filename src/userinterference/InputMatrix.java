@@ -3,8 +3,6 @@ package userinterference;
 import java.io.File;
 import java.util.Scanner;
 
-import functions.Matrix;
-
 public class InputMatrix {
     public static Scanner scan;
     public static double[][] InputKeyboard() {
@@ -202,10 +200,7 @@ public class InputMatrix {
             File file = new File(path);
             Scanner FileScan = new Scanner(file);
             // Baca baris dan kolom matrix dalam file
-            int Row = 0;
-            while (FileScan.hasNextLine()) {
-                Row++;
-            }
+            int Row = 5;
             int Col = 4;
             double[][] Matrix = new double[Row][Col];
             FileScan.close();
@@ -215,7 +210,7 @@ public class InputMatrix {
             for (int i = 0; i < Row; i++) {
                 hasil = FileScan.nextLine();
                 String[] arrhasil = hasil.split(" ");
-                for (int j = 0; j < 2; j++) {
+                for (int j = 0; j < Col; j++) {
                     if (i == Row-1 && j > 1) {
                         Matrix[i][j] = 0;
                     }

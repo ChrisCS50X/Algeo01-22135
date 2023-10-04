@@ -66,8 +66,10 @@ public class Main {
                         }
 
                         double[] interpolasi = InterpolasiPolinom.Interpolate(copy);
-                        outputMatrix.outFile((InterpolasiPolinom.OutputInterpolasi(interpolasi)));
-                        outputMatrix.outFile(", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        String hasil = "";
+                        hasil += (InterpolasiPolinom.OutputInterpolasi(interpolasi));
+                        hasil += (", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         main(args);
@@ -93,7 +95,7 @@ public class Main {
                         System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(Mat, a, b));
                     }
                     else if (optionInput == 2) {
-                        double[][] Mat = InputMatrix.InputFile();
+                        double[][] Mat = InputMatrix.InputFileInterBc();
                         double a = Mat[4][0];
                         double b = Mat[4][1];
                         double[][] copy = new double[4][4];
@@ -449,7 +451,7 @@ public class Main {
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat = InputMatrix.InputKeyboard();
                     double hasil = Matrix.DeterminanOBE(Mat);
                     System.out.print("Determinan = ");
@@ -457,7 +459,7 @@ public class Main {
                 }
                 else if (optionInput == 2) {
                     double[][] Mat = InputMatrix.InputFile();
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double hasil = Matrix.DeterminanOBE(Mat);
                     String hasilnya = "Determinan = " + df.format(hasil);
                     outputMatrix.outFile(hasilnya);
@@ -478,7 +480,7 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat = InputMatrix.InputKeyboard();
                     double hasil = Matrix.DeterminanKofaktor(Mat);
                     System.out.print("Determinan = ");
@@ -486,7 +488,7 @@ public class Main {
                 }
                 else if (optionInput == 2) {
                     double[][] Mat = InputMatrix.InputFile();
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double hasil = Matrix.DeterminanKofaktor(Mat);
                     String hasilnya = "Determinan = " + df.format(hasil);
                     outputMatrix.outFile(hasilnya);

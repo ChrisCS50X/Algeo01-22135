@@ -1,6 +1,7 @@
 package functions;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
@@ -91,7 +92,90 @@ public class operations {
     }
 
     public static String solusiBanyak(double[][] matrix) {
-        return null;
+        DecimalFormat df = new DecimalFormat("#.####");
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int[] arrparam = new int[col];
+        int nonPar = 0;
+        Arrays.fill(arrparam, 0);
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 1) {
+                    arrparam[j] = 1;
+                    nonPar++;
+                    break;
+                }
+            }
+        }
+        String hasilpar = "";
+        String[] arrhasilpar = new String[col - nonPar - 1];
+        int idxarrhasilpar = 0;
+        for (int i = 0; i < col - 1; i++) {
+            if (arrparam[i] == 0) {
+                hasilpar += "x" + (i + 1) + " = " + "x" + (i + 1);
+                arrhasilpar[idxarrhasilpar] = hasilpar;
+                idxarrhasilpar++;
+                hasilpar = "";
+            }
+        }
+        String[] arrhasil = new String[nonPar + 1 + arrhasilpar.length];
+        int idxarrhasil = 0;
+        int temp = 0;
+        int cek = 0;
+        String hasil = "";
+        for (int i = row - 1; i > -1; i--) {
+            for (int j = 0; j < col - 1; j++) {
+                if (matrix[i][j] != 0) {
+                    temp++;
+                    if (temp == 1) {
+                        if (matrix[i][j] == 1) {
+                            if (matrix[i][col - 1] != 0) {
+                                hasil += "x" + (j + 1) + " = " + df.format(matrix[i][col - 1]);
+                            } else {
+                                for (int k = j + 1; k < col - 1; k++) {
+                                    if (matrix[i][k] != 0) {
+                                        cek += 1;
+                                    }
+                                }
+                                if (cek != 0) {
+                                    hasil += "x" + (j + 1) + " = ";
+                                } else {
+                                    hasil += "x" + (j + 1) + " = 0";
+                                }
+                            }
+                        } else {
+                            if (matrix[i][col - 1] != 0) {
+                                hasil += df.format(matrix[i][j]) + "x" + (j + 1) + " = " + df.format(matrix[i][col - 1]);
+                            } else {
+                                hasil += df.format(matrix[i][j]) + "x" + (j + 1) + " = ";
+                            }
+                        }
+                    } else {
+                        if (matrix[i][j] < 0) {
+                            hasil += " + " + df.format(Math.abs(matrix[i][j])) + "x" + (j + 1);
+                        } else if (matrix[i][j] == 1) {
+                            hasil += " - " + "x" + (j + 1);
+                        } else {
+                            hasil += " - " + df.format(matrix[i][j]) + "x" + (j + 1);
+                        }
+                    }
+                }
+            }
+            temp = 0;
+            arrhasil[idxarrhasil] = hasil;
+            idxarrhasil++;
+            hasil = "";
+        }
+        for (int i = 0; i < arrhasilpar.length; i++) {
+            arrhasil[idxarrhasil] = arrhasilpar[i];
+            idxarrhasil++;
+        }
+
+        String solusi = "";
+        for (int i = 0; i < arrhasil.length; i++) {
+            solusi += (arrhasil[i]) + "\n";
+        }
+        return solusi;
     }
 
     public static Double[][] UpdateHasil(Double[][] matrix) {

@@ -103,7 +103,7 @@ public class InputMatrix {
 
     public static double[][] InputFileReg() {
         scan = new Scanner(System.in);
-        System.out.print("Masukkan Nama File: ");
+        System.out.print("Masukkan Nama File Input: ");
         String NamaFile = scan.nextLine();
 
         String path = "..\\test\\" + NamaFile;
@@ -128,7 +128,7 @@ public class InputMatrix {
             for (int i = 0; i < Row; i++) {
                 hasil = FileScan.nextLine();
                 String[] arrhasil = hasil.split(" ");
-                for (int j = 0; j < Col; j++) {
+                for (int j = 0; j < Col+1; j++) {
                     if (i == Row-1 && j == Col) {
                         Matrix[i][j] = 0;
                     }

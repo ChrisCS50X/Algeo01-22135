@@ -65,9 +65,8 @@ public class RegresiLinier {
     public static String OutputRegresi(double[] matrix){
         // Mengeluarkan output berupa persamaan regresi berganda
 
-        System.out.println("Hasil dari regresi berganda adalah: ");
         int len = matrix.length;
-        String output = "";
+        String output = "Hasil dari regresi berganda adalah:\n";
 
         output += matrix[0];
 

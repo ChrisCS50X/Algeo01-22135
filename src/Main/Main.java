@@ -145,14 +145,14 @@ public class Main {
 
                     }
                     else if (optionInput == 2) {
-                        double[][] Mat = InputMatrix.InputFile();
+                        double[][] Mat = InputMatrix.InputFileReg();
 
                         double[] Taksiran = new double[Mat[0].length - 1];
                         for (int i = 0; i < Mat[0].length - 1; i++) {
                             Taksiran[i] = Mat[Mat.length-1][i];
                         }
 
-                        double[][] copy = new double[4][4];
+                        double[][] copy = new double[Mat.length-1][Mat[0].length];
                         for (int i = 0; i < Mat.length-1;i++ ){
                             for (int j = 0; j < Mat[0].length; j++){
                                 copy [i][j] = Mat[i][j];

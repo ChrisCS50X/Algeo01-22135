@@ -24,14 +24,14 @@ public class outputMatrix {
     public static void outFile(String s) {
     try {
         scan = new Scanner(System.in);
-        System.out.print("Masukkan nama file: ");
+        System.out.print("Masukkan Nama File Output: ");
         String namaFile = scan.nextLine();
-        File file = new File("test\\" + namaFile + ".txt");
+        File file = new File("..\\test\\" + namaFile + ".txt");
         while (file.exists()) {
             System.out.println("File sudah ada, masukkan ulang nama file!");
             System.out.print("Masukkan nama file: ");
             namaFile = scan.nextLine();
-            file = new File("test\\" + namaFile + ".txt");
+            file = new File("..\\test\\" + namaFile + ".txt");
         }
         FileWriter writer = new FileWriter(file);
         writer.write(s);

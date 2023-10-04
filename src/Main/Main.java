@@ -66,8 +66,8 @@ public class Main {
                         }
 
                         double[] interpolasi = InterpolasiPolinom.Interpolate(copy);
-                        System.out.print(InterpolasiPolinom.OutputInterpolasi(interpolasi));
-                        System.out.println(", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        outputMatrix.outFile((InterpolasiPolinom.OutputInterpolasi(interpolasi)));
+                        outputMatrix.outFile(", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
                     }
                     else {
                         main(args);
@@ -104,7 +104,7 @@ public class Main {
                             }
                         }
 
-                        System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(copy, a, b));
+                        outputMatrix.outFile("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(copy, a, b));
                     }
                     else {
                         main(args);
@@ -162,16 +162,18 @@ public class Main {
                         double[][] MatX = Matrix.BikinKiri(copy);
                         double[][] MatY = Matrix.BikinKanan(copy);
                         double[] Regresi = RegresiLinier.Regresiganda(MatX, MatY);
-                        System.out.print(RegresiLinier.OutputRegresi(Regresi));
-                        System.out.print(", f(");
+                        String hasil = "";
+                        hasil += (RegresiLinier.OutputRegresi(Regresi));
+                        hasil += (", f(");
                         for (int i = 0; i < Taksiran.length; i++) {
                             if (i < Taksiran.length - 1) {
-                                System.out.print(Taksiran[i] + ",");
+                                hasil += (Taksiran[i] + ",");
                             }
                             else {
-                                System.out.println(Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
+                                hasil += (Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
                             }
                         }
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         main(args);
@@ -217,6 +219,7 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussElim(Mat);
+                    outputMatrix.OutString(Mat);
                     if (operations.cekHasil(Mat) == "Solusi unik") {
                         System.out.println(operations.solusiUnik(Mat));
                     }
@@ -231,13 +234,13 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     SPL.gaussElim(Mat);
                     if (operations.cekHasil(Mat) == "Solusi unik") {
-                        System.out.println(operations.solusiUnik(Mat));
+                        outputMatrix.outFile(operations.solusiUnik(Mat));
                     }
                     else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
-                        System.out.println(operations.solusiTidakAda(Mat));
+                        outputMatrix.outFile(operations.solusiTidakAda(Mat));
                     }
                     else {
-                        System.out.println(operations.solusiBanyak(Mat));
+                        outputMatrix.outFile(operations.solusiBanyak(Mat));
                     }
                 }
                 else {
@@ -272,13 +275,13 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     SPL.gaussJordanElim(Mat);
                     if (operations.cekHasil(Mat) == "Solusi unik") {
-                        System.out.println(operations.solusiUnik(Mat));
+                        outputMatrix.outFile(operations.solusiUnik(Mat));
                     }
                     else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
-                        System.out.println(operations.solusiTidakAda(Mat));
+                        outputMatrix.outFile(operations.solusiTidakAda(Mat));
                     }
                     else {
-                        System.out.println(operations.solusiBanyak(Mat));
+                        outputMatrix.outFile(operations.solusiBanyak(Mat));
                     }
                 }
                 else {
@@ -298,7 +301,7 @@ public class Main {
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
                         String hasil = "nilai x = {";
@@ -324,7 +327,7 @@ public class Main {
                 }
                 else if (optionInput == 2) {
                     double[][] Mat = InputMatrix.InputFile();
-                    DecimalFormat df = new DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
                         String hasil = "nilai x = {";
@@ -337,14 +340,14 @@ public class Main {
                             }
                         }
                         hasil += "}";
-                        System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
-                            System.out.println(operations.solusiTidakAda(Mat));
+                            outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
-                            System.out.println(operations.solusiBanyak(Mat));
+                            outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
                 }
@@ -366,7 +369,7 @@ public class Main {
                 if (optionInput == 1) {
                     double[][] Mat = InputMatrix.InputKeyboard();
                     if (SPL.kaidahCramer(Mat) !=  null) {
-                        DecimalFormat df = new DecimalFormat("#.##");
+                        DecimalFormat df = new DecimalFormat("#.####");
                         String hasil = "nilai x = {";
                         for (int i = 0; i < Mat.length; i++) {
                             hasil += df.format(SPL.kaidahCramer(Mat)[i][0]);
@@ -389,7 +392,7 @@ public class Main {
                 else if (optionInput == 2) {
                     double[][] Mat = InputMatrix.InputFile();
                     if (SPL.kaidahCramer(Mat) !=  null) {
-                        DecimalFormat df = new DecimalFormat("#.##");
+                        DecimalFormat df = new DecimalFormat("#.####");
                         String hasil = "nilai x = {";
                         for (int i = 0; i < Mat.length; i++) {
                             hasil += df.format(SPL.kaidahCramer(Mat)[i][0]);
@@ -398,14 +401,14 @@ public class Main {
                             }
                         }
                         hasil += "}";
-                        System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
-                            System.out.println(operations.solusiTidakAda(Mat));
+                            outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
-                            System.out.println(operations.solusiBanyak(Mat));
+                            outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
                 }
@@ -456,8 +459,8 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     DecimalFormat df = new DecimalFormat("#.##");
                     double hasil = Matrix.DeterminanOBE(Mat);
-                    System.out.print("Determinan = ");
-                    System.out.println(df.format(hasil));
+                    String hasilnya = "Determinan = " + df.format(hasil);
+                    outputMatrix.outFile(hasilnya);
                 }
                 else {
                     SubmenuDet();
@@ -485,8 +488,8 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     DecimalFormat df = new DecimalFormat("#.##");
                     double hasil = Matrix.DeterminanKofaktor(Mat);
-                    System.out.print("Determinan = ");
-                    System.out.println(df.format(hasil));
+                    String hasilnya = "Determinan = " + df.format(hasil);
+                    outputMatrix.outFile(hasilnya);
                 }
                 else {
                     SubmenuDet();
@@ -538,10 +541,10 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
-                        outputMatrix.OutString(Inverse.InverseOBE(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseOBE(Mat)));
                     }
                     else {
-                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                        outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
                 else {
@@ -573,10 +576,10 @@ public class Main {
                     double[][] Mat = InputMatrix.InputFile();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanKofaktor(Mat1) != 0) {
-                        outputMatrix.OutString(Inverse.InverseCofactor(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseCofactor(Mat)));
                     }
                     else {
-                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                        outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
                 else {

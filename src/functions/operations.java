@@ -72,7 +72,7 @@ public class operations {
     }
 
     public static String solusiUnik(double[][] matrix) {
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.####");
         String hasil = "nilai x = {";
         int row = matrix.length;
         int col = matrix[0].length;
@@ -93,39 +93,7 @@ public class operations {
     }
 
     public static String solusiBanyak(double[][] matrix) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        String Parameter[] = {"r", "s", "t", "u", "v", "w", "x", "y", "z"};
-        String hasil[] = new String[matrix.length];
-        String jawaban = "";
-
-        int row = matrix.length;
-        int col = matrix[0].length;
-        int cekNol = 0;
-        int k = col-1;
-        for (int i = row-1; i >= 0; i--) {
-            for (int j = 0; j < col; j++) {
-                if (matrix[i][j] == 0) {
-                    cekNol += 1;
-                }
-            }
-            if (cekNol == col) {
-                hasil[i] = Parameter[row - i];
-            }
-            else {
-                if (i == row -1) {
-                    hasil[i] = (df.format(matrix[i][k])) + "-" + hasil[i+1]; //minusnya ga masuk kedalem. harus tau cara ngalinya gmn
-                }
-                else {
-                    hasil[i] = (df.format(matrix[i][k])) + "-" + hasil[i+1];
-                }
-                //enak kalo rekursif cmn belom kepikiran
-            }
-        }
-
-        for (int i = 1; i <= hasil.length; i++){
-            jawaban += "X" + "[" + i + "]" + " = " + hasil[i-1] + " ";
-        }
-        return jawaban;
+        return null;
     }
 
     public static Double[][] UpdateHasil(Double[][] matrix) {
@@ -138,5 +106,20 @@ public class operations {
             }
         }
         return matrix;
+    }
+
+    public static String doubletoStr(double[][] matrix) {
+        DecimalFormat df = new DecimalFormat("#.####");
+        int row = matrix.length;
+        int col = matrix[0].length;
+        String hasil = "";
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                hasil += df.format(matrix[i][j] + " ");
+            }
+            hasil += "\n";
+        }
+        return hasil;
     }
 }

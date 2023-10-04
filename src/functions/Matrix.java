@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class Matrix {
     public static Scanner scan;
 
-    public static void OutputMatrix(double[][] M){
+    public static void OutputMatrix(double[][] matrix){
     //Mengeluarkan output matrix
 
-        for (int i = 0; i < M.length;i++){
-            for (int j = 0; j< M[i].length;j++){
-                System.out.print(M[i][j] + " ");
+        for (int i = 0; i < matrix.length;i++){
+            for (int j = 0; j< matrix[i].length;j++){
+                System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }

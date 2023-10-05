@@ -1,5 +1,7 @@
 package functions;
 
+import userinterference.outputMatrix;
+
 public class SPL {
     
     public static double[][] gaussElim(double[][] matrix) {
@@ -34,7 +36,7 @@ public class SPL {
                         //nilai matrix yang dibawah pivot akan dikurangi dengan dirinya sendiri yang membuat nilainya 0
                         matrix[row][col] -= temp * matrix[pivot][col];
                     }
-
+                    outputMatrix.OutString(matrix);
                 }
             }
         }

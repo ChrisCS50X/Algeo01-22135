@@ -91,34 +91,4 @@ public class RegresiLinier {
         }
         return output;
     }
-
-
-    //Buat Debugging
-    /* 
-    public static void Printmatrix(double[] M){
-        //Mengeluarkan output matrix
-            for (int i = 0; i < M.length;i++){
-                    System.out.print(M[i] + " ");
-                }
-                System.out.println();
-            }
-
-    public static void main(String[] args) {
-        // Create a test matrix
-        double[][] testMatrix = {
-            {1,10},{3,14},{4,15},
-            {6,18},{7,20}
-        };
-
-        double[] y = {
-            9,10,13,14,16
-        };
-
-        // Calculate the determinant using your function
-        double [] interpolasi = Regresiganda(testMatrix,y);
-
-        // Print the result
-        Printmatrix(interpolasi);
-        OutputRegresi(interpolasi); 
-    } */
 }

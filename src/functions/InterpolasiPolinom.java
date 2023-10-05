@@ -83,34 +83,4 @@ public class InterpolasiPolinom {
         }
         return output;
     }
-    
-
-    //Buat Debugging
-    /*
-    public static void Printmatrix(double[] M){
-        //Mengeluarkan output matrix
-            for (int i = 0; i < M.length;i++){
-                    System.out.print(M[i] + " ");
-                }
-                System.out.println();
-            }
-
-
-
-     
-    public static void main(String[] args) {
-        // Create a test matrix
-        double[][] testMatrix = {
-            {8,2.0794},
-            {9.0, 2.1972},{9.5, 2.2513}
-        };
-
-        // Calculate the determinant using your function
-        double [] interpolasi = Interpolate(testMatrix);
-
-        // Print the result
-        Printmatrix(interpolasi);
-        OutputInterpolasi(interpolasi);
-        System.out.print(estimasi(interpolasi, 9.2)); 
-    } */
 }

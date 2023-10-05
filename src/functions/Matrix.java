@@ -225,21 +225,4 @@ public class Matrix {
 
 
     }
-
-    //Buat Debugging 
-    /*public static void main(String[] args) {
-        // Create a test matrix
-        double[][] testMatrix = {
-            {6, 3 ,5, 7},
-            {1, 8, 0, 8},
-            {10, 0 ,6, 5},
-            {0, 6, 5, 3}
-        };
-
-        // Calculate the determinant using your function
-        double determinant = DeterminanKofaktor(testMatrix);
-
-        // Print the result
-        System.out.println("Determinant: " + determinant);
-    }*/
 }

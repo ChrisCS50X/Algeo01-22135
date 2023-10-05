@@ -12,19 +12,19 @@ public class Inverse {
         return MatrixInvers;
     }
 
-    public static double[][] InversA(double[][] m) {
+    public static double[][] InverseOBE(double[][] m) {
       int i, j, k;
       int row = m.length;
-      int col = m[0].length;
 
       double[][] mSum = new double[row][row * 2];
       double[][] mSum2 = new double[row][row];
+      //loop isi nilai mSum
       for (i = 0; i < row; i++) {
           for (j = 0; j < row; j++) {
               mSum[i][j] = m[i][j];
           }
       }
-
+      //loop matriks awal ditambah matriks identitas
       for (i = 0; i < row; i++) {
           for (j = row; j < mSum[0].length; j++) {
               if (i + (row) == j) {
@@ -34,6 +34,7 @@ public class Inverse {
               }
           }
       }
+      //fungsi tukar baris
       for (i = 0; i < mSum.length; i++) {
           if (operations.IsZero(mSum, i) && i != mSum.length - 1) {
               operations.SwapRow(mSum, i, i + 1);
@@ -63,6 +64,7 @@ public class Inverse {
               }
           }
       }
+      //loop mengurangi nilai matriks awal dengan hasil perkalian nilai matriks dengan value temporary
       for (i = mSum.length - 1; i >= 0; i--) {
           for (j = i - 1; j >= 0; j--) {
               double temp = mSum[j][i];
@@ -71,12 +73,13 @@ public class Inverse {
               }
           }
       }
-
+      //loop input hasil invers
       for (i = 0; i < mSum2.length; i++) {
           for (j = 0; j < mSum2[0].length; j++) {
               mSum2[i][j] = mSum[i][j + mSum2[0].length];
           }
       }
+      //hasil dari matrisk Inverse OBE
       return mSum2;
   }
 }

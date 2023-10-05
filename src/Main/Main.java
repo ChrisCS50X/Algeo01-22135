@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static Scanner scan;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         while(true) {
             clear();
             System.out.println("MAIN MENU");
@@ -43,15 +43,25 @@ public class Main {
                     scan = new Scanner(System.in);
                     int optionInput = scan.nextInt();
                     if (optionInput == 1) {
+                        clear();
+                        System.out.println("---INTERPOLASI POLINOM---");
                         double[][] Mat = InputMatrix.InputInterpolasi();
                         System.out.print("Masukkan Nilai Taksiran: ");
                         Float X = scan.nextFloat();
+                        batas();
                         double[] interpolasi = InterpolasiPolinom.Interpolate(Mat);
-                        System.out.print(InterpolasiPolinom.OutputInterpolasi(interpolasi));
-                        System.out.println(", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        batas();
+                        String hasil = "";
+                        hasil += (InterpolasiPolinom.OutputInterpolasi(interpolasi));
+                        hasil += (", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
                     }
                     else if (optionInput == 2) {
+                        clear();
+                        System.out.println("---INTERPOLASI POLINOM---");
                         double[][] Mat = InputMatrix.InputFileInterpl();
+                        batas();
                         double X = Mat[Mat.length-1][0];
 
                         int nRows = Mat.length;
@@ -69,6 +79,7 @@ public class Main {
                         String hasil = "";
                         hasil += (InterpolasiPolinom.OutputInterpolasi(interpolasi));
                         hasil += (", f(" + X + ") = " + InterpolasiPolinom.estimasi(interpolasi, X));
+                        System.out.println(hasil);
                         outputMatrix.outFile(hasil);
                     }
                     else {
@@ -87,15 +98,23 @@ public class Main {
                     scan = new Scanner(System.in);
                     optionInput = scan.nextInt();
                     if (optionInput == 1) {
+                        clear();
+                        System.out.println("---INTERPOLASI BICUBIC SPLINE---");
                         double[][] Mat = InputMatrix.InputKeyboard();
                         System.out.print("Masukkan nilai a: ");
                         Float a = scan.nextFloat();
                         System.out.print("Masukkan nilai b: ");
                         Float b = scan.nextFloat();
+                        batas();
                         System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(Mat, a, b));
+                        outputMatrix.outFile("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(Mat, a, b));
+
                     }
                     else if (optionInput == 2) {
+                        clear();
+                        System.out.println("---INTERPOLASI BICUBIC SPLINE---");
                         double[][] Mat = InputMatrix.InputFileInterBc();
+                        batas();
                         double a = Mat[4][0];
                         double b = Mat[4][1];
                         double[][] copy = new double[4][4];
@@ -105,7 +124,7 @@ public class Main {
                                 copy [i][j] = Mat[i][j];
                             }
                         }
-
+                        System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(copy, a, b));
                         outputMatrix.outFile("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(copy, a, b));
                     }
                     else {
@@ -124,31 +143,38 @@ public class Main {
                     scan = new Scanner(System.in);
                     optionInput = scan.nextInt();
                     if (optionInput == 1) {
+                        clear();
+                        System.out.println("---REGRESI LINEAR GANDA---");
                         double[][] Mat = InputMatrix.InputRegresi();
                         double[] Taksiran = new double[Mat[0].length - 1];
                         System.out.println("Masukkan Matriks Taksiran: ");
                         for (int i = 0; i < Mat[0].length - 1; i++) {
                             Taksiran[i] = scan.nextDouble();
                         }
-
+                        batas();
+                        String hasil = "";
                         double[][] MatX = Matrix.BikinKiri(Mat);
                         double[][] MatY = Matrix.BikinKanan(Mat);
                         double[] Regresi = RegresiLinier.Regresiganda(MatX, MatY);
-                        System.out.print(RegresiLinier.OutputRegresi(Regresi));
-                        System.out.print(", f(");
+                        hasil += (RegresiLinier.OutputRegresi(Regresi));
+                        hasil += (", f(");
                         for (int i = 0; i < Taksiran.length; i++) {
                             if (i < Taksiran.length - 1) {
-                                System.out.print(Taksiran[i] + ",");
+                                hasil += (Taksiran[i] + ",");
                             }
                             else {
-                                System.out.println(Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
+                                hasil += (Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
                             }
                         }
+                        System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
 
                     }
                     else if (optionInput == 2) {
+                        clear();
+                        System.out.println("---REGRESI LINEAR GANDA---");
                         double[][] Mat = InputMatrix.InputFileReg();
-
+                        batas();
                         double[] Taksiran = new double[Mat[0].length - 1];
                         for (int i = 0; i < Mat[0].length - 1; i++) {
                             Taksiran[i] = Mat[Mat.length-1][i];
@@ -175,6 +201,7 @@ public class Main {
                                 hasil += (Taksiran[i] + ") = " + RegresiLinier.FungsiRegresi(Regresi, Taksiran));
                             }
                         }
+                        System.out.println(hasil);
                         outputMatrix.outFile(hasil);
                     }
                     else {
@@ -219,29 +246,52 @@ public class Main {
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE ELIMINASI GAUSS:");
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussElim(Mat);
+                    batas();
+                    System.out.println("Hasil Gauss:");
                     outputMatrix.OutString(Mat);
+                    batas();
                     if (operations.cekHasil(Mat) == "Solusi unik") {
                         System.out.println(operations.solusiUnik(Mat));
-                    }
-                    else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
-                        System.out.println(operations.solusiTidakAda(Mat));
-                    }
-                    else {
-                        System.out.println(operations.solusiBanyak(Mat));
-                    }
-                }
-                else if (optionInput == 2) {
-                    double[][] Mat = InputMatrix.InputFile();
-                    SPL.gaussElim(Mat);
-                    if (operations.cekHasil(Mat) == "Solusi unik") {
+                        batas();
                         outputMatrix.outFile(operations.solusiUnik(Mat));
                     }
                     else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiTidakAda(Mat));
+                        batas();
                         outputMatrix.outFile(operations.solusiTidakAda(Mat));
                     }
                     else {
+                        System.out.println(operations.solusiBanyak(Mat));
+                        batas();
+                        outputMatrix.outFile(operations.solusiBanyak(Mat));
+                    }
+                }
+                else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE ELIMINASI GAUSS:");
+                    double[][] Mat = InputMatrix.InputFile();
+                    SPL.gaussElim(Mat);
+                    batas();
+                    System.out.println("Hasil Gauss:");
+                    outputMatrix.OutString(Mat);
+                    batas();
+                    if (operations.cekHasil(Mat) == "Solusi unik") {
+                        System.out.println(operations.solusiUnik(Mat));
+                        batas();
+                        outputMatrix.outFile(operations.solusiUnik(Mat));
+                    }
+                    else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiTidakAda(Mat));
+                        batas();
+                        outputMatrix.outFile(operations.solusiTidakAda(Mat));
+                    }
+                    else {
+                        System.out.println(operations.solusiBanyak(Mat));
+                        batas();
                         outputMatrix.outFile(operations.solusiBanyak(Mat));
                     }
                 }
@@ -261,28 +311,44 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE ELIMINASI GAUSS-JORDAN:");
                     double[][] Mat = InputMatrix.InputKeyboard();
                     SPL.gaussJordanElim(Mat);
+                    batas();
+                    System.out.println("Hasil Gauss-Jordan:");
+                    outputMatrix.OutString(Mat);
+                    batas();
                     if (operations.cekHasil(Mat) == "Solusi unik") {
                         System.out.println(operations.solusiUnik(Mat));
+                        outputMatrix.outFile(operations.solusiUnik(Mat));
                     }
                     else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
                         System.out.println(operations.solusiTidakAda(Mat));
+                        outputMatrix.outFile(operations.solusiTidakAda(Mat));
                     }
                     else {
                         System.out.println(operations.solusiBanyak(Mat));
+                        outputMatrix.outFile(operations.solusiBanyak(Mat));
                     }
                 }
                 else if (optionInput == 2) {
                     double[][] Mat = InputMatrix.InputFile();
                     SPL.gaussJordanElim(Mat);
+                    batas();
+                    System.out.println("Hasil Gauss-Jordan:");
+                    outputMatrix.OutString(Mat);
+                    batas();
                     if (operations.cekHasil(Mat) == "Solusi unik") {
+                        System.out.println(operations.solusiUnik(Mat));
                         outputMatrix.outFile(operations.solusiUnik(Mat));
                     }
                     else if (operations.cekHasil(Mat) == "Tidak ada solusi") {
+                        System.out.println(operations.solusiTidakAda(Mat));
                         outputMatrix.outFile(operations.solusiTidakAda(Mat));
                     }
                     else {
+                        System.out.println(operations.solusiBanyak(Mat));
                         outputMatrix.outFile(operations.solusiBanyak(Mat));
                     }
                 }
@@ -302,9 +368,12 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE MATRIKS BALIKAN:");
                     double[][] Mat = InputMatrix.InputKeyboard();
                     DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    batas();
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
                         String hasil = "nilai x = {";
                         int row = SPL.matrixBalikan(Mat).length;
@@ -317,20 +386,26 @@ public class Main {
                         }
                         hasil += "}";
                         System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
                             System.out.println(operations.solusiTidakAda(Mat));
+                            outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
                             System.out.println(operations.solusiBanyak(Mat));
+                            outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
                 }
                 else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE MATRIKS BALIKAN:");
                     double[][] Mat = InputMatrix.InputFile();
                     DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    batas();
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
                         String hasil = "nilai x = {";
                         int row = SPL.matrixBalikan(Mat).length;
@@ -342,13 +417,16 @@ public class Main {
                             }
                         }
                         hasil += "}";
+                        System.out.println(hasil);
                         outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
+                            System.out.println(operations.solusiTidakAda(Mat));
                             outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
+                            System.out.println(operations.solusiBanyak(Mat));
                             outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
@@ -369,7 +447,10 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE KAIDAH CRAMER:");
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    batas();
                     if (SPL.kaidahCramer(Mat) !=  null) {
                         DecimalFormat df = new DecimalFormat("#.####");
                         String hasil = "nilai x = {";
@@ -381,18 +462,24 @@ public class Main {
                         }
                         hasil += "}";
                         System.out.println(hasil);
+                        outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
                             System.out.println(operations.solusiTidakAda(Mat));
+                            outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
                             System.out.println(operations.solusiBanyak(Mat));
+                            outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
                 }
                 else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE KAIDAH CRAMER:");
                     double[][] Mat = InputMatrix.InputFile();
+                    batas();
                     if (SPL.kaidahCramer(Mat) !=  null) {
                         DecimalFormat df = new DecimalFormat("#.####");
                         String hasil = "nilai x = {";
@@ -403,13 +490,16 @@ public class Main {
                             }
                         }
                         hasil += "}";
+                        System.out.println(hasil);
                         outputMatrix.outFile(hasil);
                     }
                     else {
                         if (operations.cekHasil(SPL.gaussJordanElim(Mat)) == "Tidak ada solusi") {
+                            System.out.println(operations.solusiTidakAda(Mat));
                             outputMatrix.outFile(operations.solusiTidakAda(Mat));
                         }
                         else {
+                            System.out.println(operations.solusiBanyak(Mat));
                             outputMatrix.outFile(operations.solusiBanyak(Mat));
                         }
                     }
@@ -451,17 +541,25 @@ public class Main {
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE REDUKSI BARIS:");
                     DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    batas();
                     double hasil = Matrix.DeterminanOBE(Mat);
-                    System.out.print("Determinan = ");
-                    System.out.println(df.format(hasil));
+                    String hasilnya = "Determinan = " + df.format(hasil);
+                    System.out.println(hasilnya);
+                    outputMatrix.outFile(hasilnya);
                 }
                 else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE REDUKSI BARIS:");
                     double[][] Mat = InputMatrix.InputFile();
+                    batas();
                     DecimalFormat df = new DecimalFormat("#.####");
                     double hasil = Matrix.DeterminanOBE(Mat);
                     String hasilnya = "Determinan = " + df.format(hasil);
+                    System.out.println(hasilnya);
                     outputMatrix.outFile(hasilnya);
                 }
                 else {
@@ -480,17 +578,25 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE EKSPANSI KOFAKTOR:");
                     DecimalFormat df = new DecimalFormat("#.####");
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    batas();
                     double hasil = Matrix.DeterminanKofaktor(Mat);
-                    System.out.print("Determinan = ");
-                    System.out.println(df.format(hasil));
+                    String hasilnya = "Determinan = " + df.format(hasil);
+                    System.out.println(hasilnya);
+                    outputMatrix.outFile(hasilnya);
                 }
                 else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE EKSPANSI KOFAKTOR:");
                     double[][] Mat = InputMatrix.InputFile();
+                    batas();
                     DecimalFormat df = new DecimalFormat("#.####");
                     double hasil = Matrix.DeterminanKofaktor(Mat);
                     String hasilnya = "Determinan = " + df.format(hasil);
+                    System.out.println(hasilnya);
                     outputMatrix.outFile(hasilnya);
                 }
                 else {
@@ -530,22 +636,32 @@ public class Main {
                 scan = new Scanner(System.in);
                 int optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE MATRIKS BALIKAN:");
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    batas();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
                         outputMatrix.OutString(Inverse.InverseOBE(Mat));
-                    }
-                    else {
-                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
-                    }
-                }
-                else if (optionInput == 2) {
-                    double[][] Mat = InputMatrix.InputFile();
-                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
-                    if (Matrix.DeterminanOBE(Mat1) != 0) {
                         outputMatrix.outFile(operations.doubletoStr(Inverse.InverseOBE(Mat)));
                     }
                     else {
+                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                        outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                    }
+                }
+                else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE MATRIKS BALIKAN:");
+                    double[][] Mat = InputMatrix.InputFile();
+                    batas();
+                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    if (Matrix.DeterminanOBE(Mat1) != 0) {
+                        outputMatrix.OutString(Inverse.InverseOBE(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseOBE(Mat)));
+                    }
+                    else {
+                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                         outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
@@ -565,22 +681,32 @@ public class Main {
                 scan = new Scanner(System.in);
                 optionInput = scan.nextInt();
                 if (optionInput == 1) {
+                    clear();
+                    System.out.println("METODE ADJOIN:");
                     double[][] Mat = InputMatrix.InputKeyboard();
+                    batas();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanKofaktor(Mat1) != 0) {
                         outputMatrix.OutString(Inverse.InverseCofactor(Mat));
-                    }
-                    else {
-                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
-                    }
-                }
-                else if (optionInput == 2) {
-                    double[][] Mat = InputMatrix.InputFile();
-                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
-                    if (Matrix.DeterminanKofaktor(Mat1) != 0) {
                         outputMatrix.outFile(operations.doubletoStr(Inverse.InverseCofactor(Mat)));
                     }
                     else {
+                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                        outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
+                    }
+                }
+                else if (optionInput == 2) {
+                    clear();
+                    System.out.println("METODE ADJOIN:");
+                    double[][] Mat = InputMatrix.InputFile();
+                    batas();
+                    double[][] Mat1 = Matrix.CopyMatrix(Mat);
+                    if (Matrix.DeterminanKofaktor(Mat1) != 0) {
+                        outputMatrix.OutString(Inverse.InverseCofactor(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseCofactor(Mat)));
+                    }
+                    else {
+                        System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                         outputMatrix.outFile("Matriks tidak mempunyai inverse atau merupakan matriks singular");
                     }
                 }
@@ -609,5 +735,9 @@ public class Main {
         System.out.print("Press enter to exit");
         scan = new Scanner(System.in);
         scan.nextLine();
+    }
+
+    public static void batas() {
+        System.out.println("======================================================================");
     }
 }

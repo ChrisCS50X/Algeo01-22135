@@ -92,7 +92,7 @@ public class Main {
                         Float a = scan.nextFloat();
                         System.out.print("Masukkan nilai b: ");
                         Float b = scan.nextFloat();
-                        System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(Mat, a, b));
+                        System.out.println("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(Mat, a, b));
                     }
                     else if (optionInput == 2) {
                         double[][] Mat = InputMatrix.InputFileInterBc();
@@ -106,7 +106,7 @@ public class Main {
                             }
                         }
 
-                        outputMatrix.outFile("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubic(copy, a, b));
+                        outputMatrix.outFile("f(" + a + "," + b + ") = " + InterpolasiBikubik.bicubicSplineInterpolation(copy, a, b));
                     }
                     else {
                         main(args);

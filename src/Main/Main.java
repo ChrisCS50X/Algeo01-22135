@@ -212,6 +212,7 @@ public class Main {
                 case 7:
                     clear();
                     System.out.println("DADAH...");
+        
                     System.exit(0);
                     break;
                 default:

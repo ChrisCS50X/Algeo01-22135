@@ -1,10 +1,10 @@
 package functions;
     
 public class InterpolasiBikubik {
-    public static void BicubicSpline(double[][] input, double a, double b) {
+    public static String bicubicSplineInterpolation(double[][] Mat, double a, double b) {
         // Inisialisasi matriks pendukung
         double[][] matriks = new double[16][16];
-    
+
         int X, Y = 0;
     
         // Loop untuk mengisi matriks pendukung
@@ -48,7 +48,7 @@ public class InterpolasiBikubik {
         // Menginverskan matriks pendukung
         matriks = Inverse.InverseOBE(matriks);
     
-        // Matriks untuk menyimpan nilai input
+        // Matriks untuk menyimpan nilai Mat
         double[][] nilai = new double[16][1];
     
         int tempRow = 0;
@@ -56,7 +56,7 @@ public class InterpolasiBikubik {
         // Loop untuk mengisi matriks nilai
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                nilai[tempRow][0] = input[i][j];
+                nilai[tempRow][0] = Mat[i][j];
                 tempRow++;
             }
         }
@@ -69,16 +69,17 @@ public class InterpolasiBikubik {
         tempRow = 0;
     
         // Perhitungan hasil interpolasi bicubic spline
-        for (int j = 0; j < 4; j++) {
-            for (int i = 0; i < 4; i++) {
-                hasil += (matriksA[tempRow][0] * Math.pow(a, i) * Math.pow(b, j));
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                hasil += (matriksA[tempRow][0] * Math.pow(a, j) * Math.pow(b, i));
                 tempRow++;
             }
         }
-    
+        
+        String hasilnya = "";
         // Menampilkan hasil interpolasi
-        System.out.printf("Hasil taksirannya adalah %.2f", hasil);
-        System.out.println();
+        hasilnya += "Hasil taksirannya adalah " + hasil;
+        return hasilnya;
     }
     
 }

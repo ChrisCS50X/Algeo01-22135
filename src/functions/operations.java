@@ -180,7 +180,7 @@ public class operations {
         return solusi;
     }
 
-    public static Double[][] UpdateHasil(Double[][] matrix) {
+    public static double[][] UpdateHasil(double[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
 

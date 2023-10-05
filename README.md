@@ -1,6 +1,6 @@
 # Tugas Besar 01 IF2123 Aljabar Linear dan Geometri
 
-##Deskripsi
+###Deskripsi
 Program ini dikembangkan untuk memenuhi tugas besar pertama dari mata kuliah Aljabar Linier dan Geometri. Di sini kami
 menggunakan bahasa pemrograman Java untuk mengembangkan program ini. Program ini bertujuan untuk :
 
@@ -18,13 +18,13 @@ lib directory.
 src directory berisi source codes program tugas besar ini.
 test directory berisi file test case untuk program ini.
 
-##How to run
+###How to run
 1. Pergi menuju src folder
 2. Compile semua file source code dengan menggunakan command: javac -d ../bin ./Main/\*.java ; cd bin ; java Main.Main
 3. Lalu ketik cd .. untuk kembali ke mother folder
 4. Setelah itu, untuk run program, maka dapat menggunakan command : cd bin ; java Main.Main
 
-##Developer
+###Developer
 1. Christian Justin Hendrawan (13522135)
 2. Farrel Natha Saskoro (13522145)
 3. Jason Fernando (13522156)

@@ -1,39 +1,84 @@
 package functions;
     
 public class InterpolasiBikubik {
-    public static double bicubicSplineInterpolation(double[][] matriks, double x_taksir, double y_taksir) {
-        // Implementasi bicubic spline interpolation
-        // Anda perlu menghitung koefisien spline kubik di sini
-        // dan menggunakan koefisien untuk menghitung nilai pada titik taksiran.
+    public static void BicubicSpline(double[][] input, double a, double b) {
+        // Inisialisasi matriks pendukung
+        double[][] matriks = new double[16][16];
     
-        // Contoh sederhana, Anda dapat menggunakan pendekatan linear
-        int row = (int) y_taksir;
-        int col = (int) x_taksir;
+        int X, Y = 0;
     
-        double x_fraction = x_taksir - col;
-        double y_fraction = y_taksir - row;
-    
-        double[][] matrix = {
-            {1, x_fraction, Math.pow(x_fraction, 2), Math.pow(x_fraction, 3)},
-            {1, y_fraction, Math.pow(y_fraction, 2), Math.pow(y_fraction, 3)},
-            {1, 1 - x_fraction, Math.pow(1 - x_fraction, 2), Math.pow(1 - x_fraction, 3)},
-            {1, 1 - y_fraction, Math.pow(1 - y_fraction, 2), Math.pow(1 - y_fraction, 3)}
-        };
-    
-        double[][] submatrix = new double[4][4];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                submatrix[i][j] = matriks[row + i][col + j];
+        // Loop untuk mengisi matriks pendukung
+        while (Y < 16) {
+            for (int x = 0; x < 2; x++) {
+                X = 0;
+                for (int y = 0; y < 2; y++) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            // Mengisi elemen matriks sesuai dengan kondisi
+                            if (Y < 4) {
+                                matriks[Y][X] = Math.pow(x, i) * Math.pow(y, j);
+                            } else if (Y < 8) {
+                                if (j == 0) {
+                                    matriks[Y][X] = 0;
+                                } else {
+                                    matriks[Y][X] = j * Math.pow(x, i) * Math.pow(y, j - 1);
+                                }
+                            } else if (Y < 12) {
+                                if (i == 0) {
+                                    matriks[Y][X] = 0;
+                                } else {
+                                    matriks[Y][X] = i * Math.pow(x, i - 1) * Math.pow(y, j);
+                                }
+                            } else {
+                                if (i == 0 || j == 0) {
+                                    matriks[Y][X] = 0;
+                                } else {
+                                    matriks[Y][X] = i * j * Math.pow(x, i - 1) * Math.pow(y, j - 1);
+                                }
+                            }
+                            X++;
+                        }
+                    }
+                    X = 0;
+                    Y++;
+                }
             }
         }
     
-        double interpolatedValue = 0;
+        // Menginverskan matriks pendukung
+        matriks = Inverse.InverseOBE(matriks);
+    
+        // Matriks untuk menyimpan nilai input
+        double[][] nilai = new double[16][1];
+    
+        int tempRow = 0;
+    
+        // Loop untuk mengisi matriks nilai
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                interpolatedValue += matrix[i][j] * submatrix[i][j];
+                nilai[tempRow][0] = input[i][j];
+                tempRow++;
             }
         }
     
-        return interpolatedValue;
-    }    
+        // Mengalikan matriks pendukung yang sudah diinverskan dengan matriks nilai
+        double[][] matriksA = operations.MultiplyMatrix(matriks, nilai);
+    
+        double hasil = 0;
+    
+        tempRow = 0;
+    
+        // Perhitungan hasil interpolasi bicubic spline
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 4; i++) {
+                hasil += (matriksA[tempRow][0] * Math.pow(a, i) * Math.pow(b, j));
+                tempRow++;
+            }
+        }
+    
+        // Menampilkan hasil interpolasi
+        System.out.printf("Hasil taksirannya adalah %.2f", hasil);
+        System.out.println();
+    }
+    
 }

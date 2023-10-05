@@ -46,31 +46,4 @@ public class Inverse {
       }
       return hasil; 
   }
-
-    //Buat Debugging
-    /* 
-    public static void main(String[] args) {
-        // Create a test matrix
-        double[][] testMatrix = {
-            {1, 5},
-            {3, 7}
-        };
-
-        // Compute the inverse using your function
-        double[][] inverseMatrix = InverseOBE(testMatrix);
-
-        // Print the result
-        System.out.println("Inverse Matrix:");
-        printMatrix(inverseMatrix);
-    }
-
-    // Helper function to print a matrix
-    public static void printMatrix(double[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }*/
 }

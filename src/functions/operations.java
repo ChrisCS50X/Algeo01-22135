@@ -3,6 +3,8 @@ package functions;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
+import userinterference.outputMatrix;
+
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;
@@ -178,7 +180,7 @@ public class operations {
         return solusi;
     }
 
-    public static Double[][] UpdateHasil(Double[][] matrix) {
+    public static double[][] UpdateHasil(double[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
 
@@ -249,7 +251,13 @@ public static double[][] OBE(double[][] matriks) {
                 break;
             }
             if (operations.IsZero(matriks, i)) {
-                operations.SwapRow(matriks, i, i + 1);
+                if (i == row - 1) {
+                    return matriks;
+                }
+                else {
+                operations.SwapRow(matriks, i - 1, i);
+                }
+
             } 
             else if (matriks[i][pivot] == 0 && i != row - 1) {
                 int tempRow = i + 1;

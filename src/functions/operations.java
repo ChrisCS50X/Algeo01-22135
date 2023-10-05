@@ -223,7 +223,7 @@ public static boolean IsZero(double[][] matrix, int n) {
     }
     
 
-public static void SwapRow(double[][] matriks, int row1, int row2) {
+public static double[][] SwapRow(double[][] matriks, int row1, int row2) {
     int n = matriks[0].length;
     double[] temp = new double[n];
    
@@ -236,48 +236,79 @@ public static void SwapRow(double[][] matriks, int row1, int row2) {
     for (int i = 0; i < n; i++) {
      matriks[row2][i] = temp[i];
     }
-       }
+    return matriks;
+}
 
-public static void OBE(double[][] matrix) {
+public static double[][] OBE(double[][] matriks) {
         int pivot = 0;
-        int row = matrix.length;
-        int col = matrix[0].length;
+        int row = matriks.length;
+        int col = matriks[0].length;
 
         for (int i = 0; i < row; i++) {
             if (pivot == col - 1) {
                 break;
             }
-            if (operations.IsZero(matrix, i)) {
-                operations.SwapRow(matrix, i, i + 1);
+            if (operations.IsZero(matriks, i)) {
+                operations.SwapRow(matriks, i, i + 1);
             } 
-            else if (matrix[i][pivot] == 0 && i != row - 1) {
+            else if (matriks[i][pivot] == 0 && i != row - 1) {
                 int tempRow = i + 1;
                 while (tempRow < row) {
-                    if (matrix[tempRow][pivot] != 0) {
-                        operations.SwapRow(matrix, i, tempRow);
+                    if (matriks[tempRow][pivot] != 0) {
+                        operations.SwapRow(matriks, i, tempRow);
                         break;
                     }
                     tempRow++;
                 }
             }
-            while (matrix[i][pivot] == 0 && pivot < col - 1) {
+            while (matriks[i][pivot] == 0 && pivot < col - 1) {
                 pivot++;
             }
-            if (matrix[i][pivot] != 1 && matrix[i][pivot] != 0) {
-                double temp = matrix[i][pivot];
+            if (matriks[i][pivot] != 1 && matriks[i][pivot] != 0) {
+                double temp = matriks[i][pivot];
                 for (int j = pivot; j < col; j++) {
-                    matrix[i][j] /= temp;
+                    matriks[i][j] /= temp;
                 }
             }
             if (i != row - 1) {
                 for (int j = i + 1; j < row; j++) {
-                    double temp = matrix[j][pivot];
+                    double temp = matriks[j][pivot];
                     for (int k = pivot; k < col; k++) {
-                        matrix[j][k] = matrix[j][k] - (temp * matrix[i][k]);
+                        matriks[j][k] = matriks[j][k] - (temp * matriks[i][k]);
                     }
                 }
             }
 
         }
+        return matriks;
     }
+
+    public static double[][] OBE_Tereduksi(double[][] matriks){
+        int i,j;
+        int row = matriks.length;
+        int col = matriks[0].length;
+        matriks = OBE(matriks);
+
+        for (i = row-1 ; i >= 0 ; i--){
+            for (j = col-1 ; j >= 0 ; j--){
+                if (matriks[i][j] == 1){
+                    double Factor;
+                    int otherRow = i - 1;
+
+                    while (otherRow >= 0){
+                        Factor = matriks[otherRow][j];
+                        double value;
+                        for (int k = 0 ; k < col ; k++){
+                            value = matriks[i][k] * Factor;
+                            matriks[otherRow][k] -= value;
+                        }
+                        otherRow--;
+                    }
+                }
+            }
+        }
+
+        return matriks;
+    }
+
 }

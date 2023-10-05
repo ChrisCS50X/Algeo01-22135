@@ -46,7 +46,7 @@ public class InterpolasiBikubik {
         }
     
         // Menginverskan matriks pendukung
-        matriks = Inverse.InversA(matriks);
+        matriks = Inverse.InverseOBE(matriks);
     
         // Matriks untuk menyimpan nilai Mat
         double[][] nilai = new double[16][1];

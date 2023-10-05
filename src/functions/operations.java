@@ -3,8 +3,6 @@ package functions;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
-import userinterference.outputMatrix;
-
 public class operations {
     public static double[][] extendMatrix(double[][] Matrix1, double[][] Matrix2) {
         double[][] extended;

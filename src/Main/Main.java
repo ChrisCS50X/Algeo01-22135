@@ -643,8 +643,8 @@ public class Main {
                     batas();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
-                        outputMatrix.OutString(Inverse.InversA(Mat));
-                        outputMatrix.outFile(operations.doubletoStr(Inverse.InversA(Mat)));
+                        outputMatrix.OutString(Inverse.InverseOBE(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseOBE(Mat)));
                     }
                     else {
                         System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");
@@ -658,8 +658,8 @@ public class Main {
                     batas();
                     double[][] Mat1 = Matrix.CopyMatrix(Mat);
                     if (Matrix.DeterminanOBE(Mat1) != 0) {
-                        outputMatrix.OutString(Inverse.InversA(Mat));
-                        outputMatrix.outFile(operations.doubletoStr(Inverse.InversA(Mat)));
+                        outputMatrix.OutString(Inverse.InverseOBE(Mat));
+                        outputMatrix.outFile(operations.doubletoStr(Inverse.InverseOBE(Mat)));
                     }
                     else {
                         System.out.println("Matriks tidak mempunyai inverse atau merupakan matriks singular");

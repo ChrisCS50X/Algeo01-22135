@@ -204,4 +204,80 @@ public class operations {
         }
         return hasil;
     }
+
+public static boolean IsZero(double[][] matrix, int n) {
+    int cnt = 0;
+    int col = matrix[0].length;
+    boolean isZero = false;
+
+    //jika di suatu row semua elemen nya adalah zero, maka boolean true
+    for (int i = 0; i < col; i++) {
+            if (matrix[n][i] == 0) {
+                cnt++;
+            }
+        }
+        if (cnt == col) {
+            return true;
+        }
+    return isZero;    
+    }
+    
+
+public static void SwapRow(double[][] matriks, int row1, int row2) {
+    int n = matriks[0].length;
+    double[] temp = new double[n];
+   
+    for (int i = 0; i < n; i++) {
+     temp[i] = matriks[row1][i];
+    }
+    for (int i = 0; i < n; i++) {
+     matriks[row1][i] = matriks[row2][i];
+    }
+    for (int i = 0; i < n; i++) {
+     matriks[row2][i] = temp[i];
+    }
+       }
+
+public static void OBE(double[][] matrix) {
+        int pivot = 0;
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        for (int i = 0; i < row; i++) {
+            if (pivot == col - 1) {
+                break;
+            }
+            if (operations.IsZero(matrix, i)) {
+                operations.SwapRow(matrix, i, i + 1);
+            } 
+            else if (matrix[i][pivot] == 0 && i != row - 1) {
+                int tempRow = i + 1;
+                while (tempRow < row) {
+                    if (matrix[tempRow][pivot] != 0) {
+                        operations.SwapRow(matrix, i, tempRow);
+                        break;
+                    }
+                    tempRow++;
+                }
+            }
+            while (matrix[i][pivot] == 0 && pivot < col - 1) {
+                pivot++;
+            }
+            if (matrix[i][pivot] != 1 && matrix[i][pivot] != 0) {
+                double temp = matrix[i][pivot];
+                for (int j = pivot; j < col; j++) {
+                    matrix[i][j] /= temp;
+                }
+            }
+            if (i != row - 1) {
+                for (int j = i + 1; j < row; j++) {
+                    double temp = matrix[j][pivot];
+                    for (int k = pivot; k < col; k++) {
+                        matrix[j][k] = matrix[j][k] - (temp * matrix[i][k]);
+                    }
+                }
+            }
+
+        }
+    }
 }
